@@ -175,7 +175,7 @@ public class BDao {
 					preparedStatement.close();
 			}
 			catch(Exception e){
-				
+				e.printStackTrace();
 			}
 		}
 		

@@ -10,48 +10,46 @@
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 		<form action="modify" method="post">
 			<input type="hidden" name="bId" value="${contentView.bId}">
+			<tr>
+				<td>번호</td>
+				<td>${contentView.bId}</td>
+			</tr>
+			
+			<tr>
+				<td>히트</td>
+				<td>${contentView.bHit}</td>
+			</tr>
+			
+			<tr>
+				<td>이름</td>
+				<td>
+					<input type="text" name="bName" value="${contentView.bName}">
+				</td>
+			</tr>
+			
+			<tr>
+				<td>제목</td>
+				<td>
+					<input type="text" name="bTitle" value="${contentView.bTitle}">
+				</td>
+			</tr>
+			
+			<tr>
+				<td>내용</td>
+				<td>
+					<textarea name="bContent" rows="10">${contentView.bContent}</textarea>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="수정">&nbsp;&nbsp;
+					<a href="list">목록보기</a>
+					<a href="delete">삭제</a>
+					<a href="reply">답변</a>
+				</td>
+			</tr>
 		</form>
-
-		<tr>
-			<td>번호</td>
-			<td>${contentView.bId}</td>
-		</tr>
-		
-		<tr>
-			<td>히트</td>
-			<td>${contentView.bHit}</td>
-		</tr>
-		
-		<tr>
-			<td>이름</td>
-			<td>
-				<input type="text" name="bName" value="${contentView.bName}">
-			</td>
-		</tr>
-		
-		<tr>
-			<td>제목</td>
-			<td>
-				<input type="text" name="bTitle" value="${contentView.bTitle}">
-			</td>
-		</tr>
-		
-		<tr>
-			<td>내용</td>
-			<td>
-				<textarea name="bContent" rows="10">
-				1231231232
-<%-- 				${contentView.bContent} --%>
-				</textarea>
-			</td>
-		</tr>
-		
-		<tr>
-			<input type="button" value="수정" />
-			<a href="list">목록보기</a>
-			<a href="delete">삭제</a>
-			<a href="reply">답변</a>
-		</tr>
 	</table>
 </body>
 </html>
