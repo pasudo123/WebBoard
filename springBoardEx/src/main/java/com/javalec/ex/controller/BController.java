@@ -83,7 +83,8 @@ public class BController {
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.GET, value="/modify")
+	// 컨텐츠 내에서 내용을 수정하기 위한 컨트롤러
+	@RequestMapping(method=RequestMethod.POST, value="/modify")
 	public String modify(HttpServletRequest request, Model model){
 		System.out.println("modify()");
 		
@@ -95,7 +96,7 @@ public class BController {
 	}
 	
 	// 댓글창을 여는 경우
-	@RequestMapping(value="/replyView")
+	@RequestMapping(method = RequestMethod.GET, value="/replyView")
 	public String replyView(HttpServletRequest request, Model model){
 		System.out.println("replyView()");
 		
@@ -119,7 +120,7 @@ public class BController {
 	}
 	
 	// 삭제하는 경우
-	@RequestMapping(value="/delete")
+	@RequestMapping(method=RequestMethod.GET, value="/delete")
 	public String delete(HttpServletRequest request, Model model){
 		System.out.println("delete()");
 		

@@ -10,6 +10,7 @@
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 		<form action="modify" method="post">
 			<input type="hidden" name="bId" value="${contentView.bId}">
+			
 			<tr>
 				<td>번호</td>
 				<td>${contentView.bId}</td>
@@ -37,16 +38,16 @@
 			<tr>
 				<td>내용</td>
 				<td>
-					<textarea name="bContent" rows="10">${contentView.bContent}</textarea>
+					<textarea name="bContent" rows="10" cols="5">${contentView.getContent()}</textarea>
 				</td>
 			</tr>
 			
 			<tr>
 				<td colspan="2">
 					<input type="submit" value="수정">&nbsp;&nbsp;
-					<a href="list">목록보기</a>
-					<a href="delete">삭제</a>
-					<a href="reply">답변</a>
+					<a href="list">목록보기</a>&nbsp;&nbsp;
+					<a href="delete?bId=${contentView.bId}">삭제</a>&nbsp;&nbsp;
+					<a href="reply?bId=${contentView.bId}">답변</a>
 				</td>
 			</tr>
 		</form>
