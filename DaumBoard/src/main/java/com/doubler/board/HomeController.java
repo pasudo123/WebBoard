@@ -2,6 +2,7 @@ package com.doubler.board;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -16,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.doubler.board.dto.BoardContentDTO;
+import com.doubler.board.util.BoardPaging;
+import com.doubler.board.util.BoardSequenceNumber;
+import com.doubler.board.util.PagingMovement;
+import com.doubler.board.util.PagingMovementImpl;
 
 /**
  * Handles requests for the application home page.
@@ -28,25 +33,27 @@ public class HomeController {
 	@Autowired
 	private BoardService boardService;
 	
-	// 번호표
-	private Integer contentNumber = null;
-	private BoardContentDTO boardContentDto = new BoardContentDTO();
+	private static Integer contentNumber = null;								// 번호표
+	private BoardContentDTO boardContentDto = new BoardContentDTO();			// DTO 객체
+	private BoardSequenceNumber boardSequenceNum = new BoardSequenceNumber();	// 게시글 시퀀스 객체
+	private BoardPaging boardPaging = new BoardPaging();						// 페이징 처리 객체
+	private PagingMovement pagingMovement = new PagingMovementImpl();			// 페이징 이동 객체
 	
-//	@RequestMapping(value = "/", method=RequestMethod.GET)
-//	public String home(Locale locale, Model model) {
-//		return "boardList";
-//	}
 	
 	// 게시판 리스트 보여주는 컨트롤러
-	@RequestMapping(value="boardList")
-	public String showboardList(Model model){
-		// 최근에 작성된 번호 추출
-		if(boardService.getBoardList().size() != 0)
-			contentNumber = boardService.getBoardList().get(0).getContentNum();
-		if(boardService.getBoardList().size() == 0)
-			contentNumber = 0;
+	@RequestMapping(value="boardList", method=RequestMethod.GET)
+	public String showboardList(HttpServletRequest request, Model model){
+		int contentCount = boardService.getContentCount();	// 최근에 작성된 번호 추출
+		contentNumber = boardSequenceNum.getContentNumber(contentCount);
+		boardPaging.setPagesCount(contentCount);
+		
+		String pageNumber = request.getParameter("paging");
+		if(pageNumber != null){
+			pagingMovement.chooseMovement(pageNumber);
+		}
 		
 		model.addAttribute("boardContent", boardService.getBoardList());
+		model.addAttribute("pagingInfoMap", boardPaging.getPagingInformation());
 		return "boardList";
 	}
 	
@@ -61,11 +68,16 @@ public class HomeController {
 	// 게시글 작성 컨트롤러
 	@RequestMapping(value="boardWrite", method=RequestMethod.POST)
 	public String writeContent(HttpServletRequest request, Model model){
+		if(contentNumber == null){
+			int contentCount = boardService.getContentCount();
+			contentNumber = boardSequenceNum.getContentNumber(contentCount);
+		}
+		
 		// 가장 늦은 번호 + 1
-		contentNumber++;
+		contentNumber = boardSequenceNum.getPlusContentNumber(contentNumber);
 		
 		// 번호, 제목, 작성자, 내용
-		int contentNum = this.contentNumber;
+		int contentNum = HomeController.contentNumber;
 		String contentWriter = request.getParameter("writer");	
 		String contentTitle = request.getParameter("title");
 		String contentDetail = request.getParameter("content");
@@ -90,6 +102,7 @@ public class HomeController {
 		return "/boardContentView";
 	}
 	
+	
 	// 게시글 수정 컨트롤러
 	@RequestMapping(value="/boardModify", method=RequestMethod.POST)
 	public String modifyContent(HttpServletRequest request){
@@ -103,6 +116,7 @@ public class HomeController {
 		
 		return "redirect:boardList";
 	}
+	
 	
 	// 게시글 삭제 컨트롤러
 	@RequestMapping(value="/boardDelete", method=RequestMethod.GET)

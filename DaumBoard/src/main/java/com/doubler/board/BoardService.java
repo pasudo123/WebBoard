@@ -5,6 +5,10 @@ import java.util.List;
 import com.doubler.board.dto.BoardContentDTO;
 
 public interface BoardService {
+	
+	// 게시글 전체 카운트 가져오는 기능
+	public int getContentCount();
+		
 	// 게시판 읽기
 	public List<BoardContentDTO> getBoardList();
 	

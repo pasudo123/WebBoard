@@ -16,7 +16,12 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	private String nameSpace = "com.doubler.board.BoardDAO";
 	private BoardContentDTO boardContentDto = new BoardContentDTO();
-			
+	
+	@Override
+	public int getContentCount() {
+		return sqlSession.selectOne(nameSpace + ".getContentCount");
+	}
+	
 	@Override
 	public List<BoardContentDTO> getBoardList() {
 		return sqlSession.selectList(nameSpace + ".getBoardList");
@@ -62,8 +67,7 @@ public class BoardDAOImpl implements BoardDAO{
 		boardContentDto.setContentNum(contentNum);
 		boardContentDto.setContentTitle(contentTitle);
 		boardContentDto.setContentDetail(contentDetail);
+		
 		sqlSession.update(nameSpace + ".updateContentDetail", boardContentDto);
 	}
-	
-	
 }
