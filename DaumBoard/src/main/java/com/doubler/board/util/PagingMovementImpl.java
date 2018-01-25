@@ -68,7 +68,6 @@ public class PagingMovementImpl implements PagingMovement {
 		// 해당 페이지가 현재 페이지 블록보다 큰 경우
 		// 해당 페이지가 현재 페이지 블록보다 작은 경우
 		// 위의 경우 특정 페이지 블록으로 이동해야 한다.
-		// url 안에 get방식으로 값을 넣으니 페이징화면이 안바뀜
 		int pageBlock = 0;
 		
 		if(pageNum % BoardPaging.PRINT_PAGE_COUNT != 0)
