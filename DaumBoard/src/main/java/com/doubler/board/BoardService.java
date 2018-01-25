@@ -1,5 +1,6 @@
 package com.doubler.board;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.doubler.board.dto.BoardContentDTO;
@@ -10,7 +11,7 @@ public interface BoardService {
 	public int getContentCount();
 		
 	// 게시판 읽기
-	public List<BoardContentDTO> getBoardList();
+	public List<BoardContentDTO> getBoardList(HashMap<String, Integer> map, int contentCount);
 	
 	// 게시글 작성
 	public void writeContent(int contentNum, String contentTitle, String contentWriter, String contentDetail);

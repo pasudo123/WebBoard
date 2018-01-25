@@ -48,19 +48,19 @@
 <!-- 	static final int PRINT_PAGE_COUNT = 3;		// 한 화면당 페이지의 수 -->
 	<div>
 		<!-- 현재 블록이 첫번째 블록이 아니면 보여주기 -->
-		<c:if test="${pagingInfoMap.currentBlock ne pagingInfoMap.firstBlock}"><
+		<c:if test="${pagingInfoMap.currentBlock != pagingInfoMap.firstBlock}">
 			<span><a href="boardList?paging=begin">[처음]</a></span>
 			<span><a href="boardList?paging=prev">[이전]</a></span>
 		</c:if>
 		
 		<c:forEach var="page" begin="${(pagingInfoMap.currentBlock*pagingInfoMap.PRINT_PAGE_COUNT) - (pagingInfoMap.PRINT_PAGE_COUNT-1)}" end="${pagingInfoMap.currentBlock*pagingInfoMap.PRINT_PAGE_COUNT}">
-			<c:if test="${page ne pagingInfoMap.lastPage}">
+			<c:if test="${page <= pagingInfoMap.lastPage}">
 				<span><a href="boardList?paging=${page}">[ ${page} ]</a></span>
 			</c:if>
 		</c:forEach>
 		
 		<!-- 현재 블록이 마지막 블록이 아니면 보여주기 -->
-		<c:if test="${pagingInfoMap.currentBlock ne pagingInfoMap.lastBlock}">
+		<c:if test="${pagingInfoMap.currentBlock != pagingInfoMap.lastBlock}">
 			<span><a href="boardList?paging=next">[다음]</a></span>
 			<span><a href="boardList?paging=end">[마지막]</a></span>
 		</c:if>

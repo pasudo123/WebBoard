@@ -36,24 +36,24 @@ public class HomeController {
 	private static Integer contentNumber = null;								// 번호표
 	private BoardContentDTO boardContentDto = new BoardContentDTO();			// DTO 객체
 	private BoardSequenceNumber boardSequenceNum = new BoardSequenceNumber();	// 게시글 시퀀스 객체
-	private BoardPaging boardPaging = new BoardPaging();						// 페이징 처리 객체
+	private static BoardPaging boardPaging = new BoardPaging();					// 페이징 처리 객체
 	private PagingMovement pagingMovement = new PagingMovementImpl();			// 페이징 이동 객체
 	
 	
 	// 게시판 리스트 보여주는 컨트롤러
 	@RequestMapping(value="boardList", method=RequestMethod.GET)
 	public String showboardList(HttpServletRequest request, Model model){
-		int contentCount = boardService.getContentCount();	// 최근에 작성된 번호 추출
+		int contentCount = boardService.getContentCount();				// 최근에 작성된 번호 추출
 		contentNumber = boardSequenceNum.getContentNumber(contentCount);
 		boardPaging.setPagesCount(contentCount);
 		
 		String pageNumber = request.getParameter("paging");
 		if(pageNumber != null){
-			pagingMovement.chooseMovement(pageNumber);
+			boardPaging = pagingMovement.chooseMovement(pageNumber);
 		}
 		
-		model.addAttribute("boardContent", boardService.getBoardList());
 		model.addAttribute("pagingInfoMap", boardPaging.getPagingInformation());
+		model.addAttribute("boardContent", boardService.getBoardList(boardPaging.getPagingInformation(), contentCount));
 		return "boardList";
 	}
 	
@@ -84,7 +84,7 @@ public class HomeController {
 		
 		boardService.writeContent(contentNum, contentTitle, contentWriter, contentDetail);
 		
-		return "redirect:boardList";
+		return "redirect:boardList?paging=1";
 	}
 	
 	
@@ -114,7 +114,7 @@ public class HomeController {
 		
 		boardService.updateContentDetail(contentNumInt, contentTitle, contentDetail);
 		
-		return "redirect:boardList";
+		return "redirect:boardList?paging=1";
 	}
 	
 	
@@ -131,6 +131,6 @@ public class HomeController {
 		boardService.deleteContent(contentNumInt);
 		boardService.updateContentNum(contentNumInt);
 		
-		return "redirect:boardList";
+		return "redirect:boardList?paging=1";
 	}
 }

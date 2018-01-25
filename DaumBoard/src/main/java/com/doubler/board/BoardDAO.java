@@ -3,6 +3,7 @@ package com.doubler.board;
 import java.util.List;
 
 import com.doubler.board.dto.BoardContentDTO;
+import com.doubler.board.util.BoardPagingNumber;
 
 public interface BoardDAO {
 	
@@ -10,7 +11,7 @@ public interface BoardDAO {
 	public int getContentCount();
 	
 	// 게시판의 게시글 가져오는 기능
-	public List<BoardContentDTO> getBoardList();
+	public List<BoardContentDTO> getBoardList(BoardPagingNumber boardPagingNumber);
 	
 	// 게시판에서 글 작성하는 기능
 	public void writeContent(int contentNum, String contentTitle, String contentWriter, String contentDetail);

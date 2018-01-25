@@ -33,7 +33,7 @@ public class BoardPaging {
 	
 	// 게시글 전체 개수 세터
 	public void setPagesCount(int contentCount){
-		this.contentCount = contentCount;
+		BoardPaging.contentCount = contentCount;
 	}
 	
 	// 현재 페이지 세터

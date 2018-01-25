@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.doubler.board.dto.BoardContentDTO;
+import com.doubler.board.util.BoardPagingNumber;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -23,8 +24,8 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	
 	@Override
-	public List<BoardContentDTO> getBoardList() {
-		return sqlSession.selectList(nameSpace + ".getBoardList");
+	public List<BoardContentDTO> getBoardList(BoardPagingNumber boardPagingNumber) {
+		return sqlSession.selectList(nameSpace + ".getBoardList", boardPagingNumber);
 	}
 	
 	@Override

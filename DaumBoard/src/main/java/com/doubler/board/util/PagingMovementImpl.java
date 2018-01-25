@@ -1,7 +1,5 @@
 package com.doubler.board.util;
 
-import java.util.HashMap;
-
 public class PagingMovementImpl implements PagingMovement {
 	
 	private BoardPaging boardPaging = null;
@@ -11,71 +9,76 @@ public class PagingMovementImpl implements PagingMovement {
 	}
 	
 	@Override
-	public void chooseMovement(String paging) {
-		if(paging.equals("begin")){
-			moveBeginBlock();
-			return;
-		}
+	public BoardPaging chooseMovement(String paging) {
+		if(paging.equals("begin"))
+			return moveBeginBlock();
 		
-		if(paging.equals("prev")){
-			movePrevBlock();
-			return;
-		}
+		if(paging.equals("prev"))
+			return movePrevBlock();
 		
-		if(paging.equals("next")){
-			moveNextBlock();
-			return;
-		}
+		if(paging.equals("next"))
+			return moveNextBlock();
 		
-		if(paging.equals("end")){
-			moveEndBlock();
-			return;
-		}
+		if(paging.equals("end"))
+			return moveEndBlock();
 		
 		int pageNum = Integer.parseInt(paging);
-		movePage(pageNum);
+		
+		return movePage(pageNum);
 	}
 	
 	@Override
-	public HashMap<String, Integer> moveBeginBlock() {
+	public BoardPaging moveBeginBlock() {
 		// 처음 페이지 블록
 		boardPaging.setCurrentBlock(boardPaging.getFirstBlock());
 		boardPaging.setCurrentPage(boardPaging.getFirstPageNum());
 		
-		return boardPaging.getPagingInformation();
+		return boardPaging;
 	}
 
 	@Override
-	public HashMap<String, Integer> movePrevBlock() {
+	public BoardPaging movePrevBlock() {
 		// 이전 페이지 블록으로
 		boardPaging.setCurrentBlock(boardPaging.getCurrentBlock() - 1);
 		boardPaging.setCurrentPage(boardPaging.getCurrentBlock() * BoardPaging.PRINT_PAGE_COUNT);
 		
-		return boardPaging.getPagingInformation();
+		return boardPaging;
 	}
 
 	@Override
-	public HashMap<String, Integer> moveNextBlock() {
+	public BoardPaging moveNextBlock() {
 		// 다음 페이지 블록으로
 		boardPaging.setCurrentBlock(boardPaging.getCurrentBlock() + 1);
 		boardPaging.setCurrentPage(boardPaging.getCurrentBlock()*BoardPaging.PRINT_PAGE_COUNT - (BoardPaging.PRINT_PAGE_COUNT - 1));
 	
-		return boardPaging.getPagingInformation();
+		return boardPaging;
 	}
 
 	@Override
-	public HashMap<String, Integer> moveEndBlock() {
+	public BoardPaging moveEndBlock() {
 		// 마지막 페이지 블록으로
 		boardPaging.setCurrentBlock(boardPaging.getLastBlock());
 		boardPaging.setCurrentPage(boardPaging.getLastPageNum());;
 		
-		return boardPaging.getPagingInformation();
+		return boardPaging;
 	}
 
 	@Override
-	public HashMap<String, Integer> movePage(int pageNum) {
+	public BoardPaging movePage(int pageNum) {
+		// 해당 페이지가 현재 페이지 블록보다 큰 경우
+		// 해당 페이지가 현재 페이지 블록보다 작은 경우
+		// 위의 경우 특정 페이지 블록으로 이동해야 한다.
+		// url 안에 get방식으로 값을 넣으니 페이징화면이 안바뀜
+		int pageBlock = 0;
+		
+		if(pageNum % BoardPaging.PRINT_PAGE_COUNT != 0)
+			pageBlock += 1;
+		
+		pageBlock += pageNum / BoardPaging.PRINT_PAGE_COUNT;
+		
+		boardPaging.setCurrentBlock(pageBlock);
 		boardPaging.setCurrentPage(pageNum);
 		
-		return boardPaging.getPagingInformation();
+		return boardPaging;
 	}
 }

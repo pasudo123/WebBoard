@@ -28,7 +28,7 @@ ORA-00911: invalid character , java.sql.SQLException:
 	큰 번호가 더 최근에 생성됬기 때문에 내림차순 정렬 
 	즉, 최신날짜가 위로 올라옴 
 	-->
-	<select id="getBoardList" resultType="com.doubler.board.dto.BoardContentDTO">
+	<select id="getBoardList" parameterType="com.doubler.board.util.BoardPagingNumber" resultType="com.doubler.board.dto.BoardContentDTO">
 		<![CDATA[ 
 		
 		SELECT 	
@@ -40,8 +40,8 @@ ORA-00911: invalid character , java.sql.SQLException:
 		  	CONTENT_HIT as contentHit
 		FROM 
 			WEB_BOARD_TB 
-		WHERE c
-			ontent_NUM >= #{startNum} AND content_NUM <= #{lastNum}
+		WHERE
+			content_NUM >= #{startNum} AND content_NUM <= #{endNum}
 		ORDER BY 
 			CONTENT_NUM DESC
 	
