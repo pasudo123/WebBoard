@@ -3,7 +3,6 @@ package com.doubler.board.util;
 import java.util.HashMap;
 
 public class BoardPaging {
-
 	static final int PRINT_CONTENT_COUNT = 5;	// 한 페이지에 보여줄 글의 수
 	static final int PRINT_PAGE_COUNT = 3;		// 한 화면당 페이지의 수
 	
@@ -126,7 +125,7 @@ public class BoardPaging {
 	
 	/**
 	 *
-	 * 전체개수를 파악하지 말고 부분부분 조회구문을 이용한다. (이후 리팩토링 작업)ㅊ
+	 * 전체개수를 파악하지 말고 부분부분 조회구문을 이용한다. (이후 리팩토링 작업)
 	 * 
 	 * static final int PRINT_CONTENT_COUNT = 5;	// 한 페이지에 보여줄 글의 수
 	 * static final int PRINT_PAGE_COUNT = 3;		// 한 화면당 페이지의 수

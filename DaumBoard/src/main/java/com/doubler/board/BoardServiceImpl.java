@@ -32,6 +32,7 @@ public class BoardServiceImpl implements BoardService{
 		// start & end [큰번호가 우선으로]
 		int startNum = (contentCount - printContentCount * (currentPage - 1)) - (printContentCount - 1);
 		int endNum = (contentCount - printContentCount * (currentPage - 1));
+		
 		boardPagingNumber.setStartNum(startNum);
 		boardPagingNumber.setEndNum(endNum);
 		

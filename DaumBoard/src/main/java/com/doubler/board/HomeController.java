@@ -42,12 +42,14 @@ public class HomeController {
 		boardPaging.setPagesCount(contentCount);
 		
 		String pageNumber = request.getParameter("paging");
+		
 		if(pageNumber != null){
 			boardPaging = pagingMovement.chooseMovement(pageNumber);
 		}
 		
 		model.addAttribute("pagingInfoMap", boardPaging.getPagingInformation());
 		model.addAttribute("boardContent", boardService.getBoardList(boardPaging.getPagingInformation(), contentCount));
+		
 		return "boardList";
 	}
 	
