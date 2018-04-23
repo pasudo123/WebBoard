@@ -5,7 +5,7 @@
 2. 2018/04/23 ~ 
 
 ## 개발환경
-* IDE : Neon.3 Release (4.6.3)
+* IDE : Eclipse Neon.3 Release (4.6.3)
 * Java : 1.8.0_171
 * Apache Maven 3. 5. 2
 * Spring Framework 4.3.16
