@@ -20,8 +20,8 @@ public class BoardController {
 	public String showBoardList(){
 		
 		int count = boardService.getFullCountOnContent();
-		logger.info("== " + count);
+		logger.info(count + "");
 		
-		return "boardView/demo";
+		return "boardViews/demo";
 	}
 }
