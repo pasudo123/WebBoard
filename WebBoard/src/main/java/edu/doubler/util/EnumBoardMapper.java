@@ -1,13 +1,14 @@
 package edu.doubler.util;
 
-public enum EnumOnBoardDao {
+public enum EnumBoardMapper {
 	NAME_SPACE("BoardMapper"),
-	QUERY_THAT_GET_FULL_COUNT_ON__CONTENT("getFullCountOnContent");
+	FULL_COUNT_CONTENT("getFullCountOnContent"),
+	ADD_BOARD_CONTENT("addBoardContent");
 	
 	private String value;
 	
-	private EnumOnBoardDao(){}
-	private EnumOnBoardDao(String value){
+	private EnumBoardMapper(){}
+	private EnumBoardMapper(String value){
 		this.value = value;
 	}
 	

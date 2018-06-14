@@ -2,8 +2,9 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
 <mapper namespace="BoardMapper">
-	
+
 	<select
 	id="getFullCountOnContent"
 	resultType="java.lang.Integer">
@@ -15,4 +16,31 @@
 	]]>	
 	</select>
 
+	<insert
+	id="addBoardContent"
+	parameterType="edu.doubler.domain.BoardContent">
+	<![CDATA[
+		INSERT INTO
+			WEB_BOARD_TB
+			(
+				CONTENTS_NUMS, 
+				CONTENTS_TITLE, 
+				CONTENTS_WRITER, 
+				CONTENTS_CONTENT, 
+				CONTENTS_DATE, 
+				CONTENTS_READ_COUNT, 
+				CONTENTS_HIT_COUNT
+			)
+		VALUES
+			(
+				CONTENTS_SEQ.NEXTVAL, 
+				#{title}, 
+				#{writer}, 
+				#{content},
+				#{date},
+				0,
+				0
+			)
+	]]>
+	</insert>
 </mapper>

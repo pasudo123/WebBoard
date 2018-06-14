@@ -1,0 +1,39 @@
+div.titleWrapper{
+    width:1000px;
+    text-align:center;
+}
+
+div.buttonWrapper{
+    width:1000px;
+    text-align:right;
+}
+
+input.writeButton{
+    font-family:'NanumSquareEB';
+    font-size:15px;
+    padding:5px 15px 5px 15px;
+    outline:none;
+    border-radius:15px;
+    border:#a1bffc solid 0.5px;
+    background-color:#dae4f9;
+}
+
+input.writeButton:hover{
+    cursor:pointer;
+}
+
+input.writeButton:active{
+	background-color:#bacced;
+}
+
+div.tableWrapper{
+	margin-top:50px;
+}
+
+table{
+	width:1000px;
+}
+
+th{
+	padding:0 5px 0 5px;
+}

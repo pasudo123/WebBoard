@@ -6,7 +6,62 @@
 => servelet-context.xml 에서 <resources mapping="/resources/**" location="/resources/" /> 의 부분의 resources 와 매칭되어야 한다.
 => <link rel="stylesheet" type="text/css" href="resources/theme/css/board.css"> 이렇게
 
-(2) CSS 크롬 개발자도구에서 변경하기
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+(2) 크롬 개발자도구에서 CSS 변경하기
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 (3) input 버튼에서 클릭 테두리 없애기 => outline:none;
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+(4) 자바스크립트 삽입 위치
+자바스크립트의 삽입 위치에 따라 스크립트 실행순서와 브라우저 렌더링에 영향을 끼침
+(4-1) <head></head> 내부에 삽입
+- 브라우저 렌더링에 방해가 되어 무거운 스크립트가 실행되는 경우, 오랫동안 완성되지 못한 화면을 노출한다.
+- 문서를 초기화하거나 설정하는 가벼운 스크립트들이 자주 사용
+- 문서의 DOM(Document Object Model) 구조가 필요한 스크립트의 경우 document.onload와 같은 로드 이벤트가 추가되어야 한다.
+(4-2) </body> 앞에 삽입되는 경우
+- 브라우저가 렌더링이 완료된 상태에서 스크립트가 실행된다. 따라서 콘텐츠를 변경하는 스크립트의 경우 화면에 노출된 채 변화한다.
+- 대부분의 스크립트의 위치로 추천되는 위치이다.
+- 문서의 DOM 구조가 완료된 시점에 실행되기 때문에 별다른 추가설정이 필요없다.
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+(5) 상대경로 & 절대경로 (location.href)
+- http://4rgos.tistory.com/17 
+- URL 경로에 따른 절대경로 및 상대경로 확인하기
+- ./
+- ../
+- /
+구분지어서 설명하면서 depth 들어가려면 풀경로로 들어가야함 
+(근데 다시 "./" 로 작동된다) ?
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+(6) 자바 date 형식 변경
+JDK 8 이상버전부터 가능
+https://docs.oracle.com/javase/tutorial/i18n/format/simpleDateFormat.html
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+(7) WEB_BOARD_TB 생성
+CREATE TABLE WEB_BOARD_TB(
+CONTENTS_NUMS NUMBER(10) PRIMARY KEY,
+CONTENTS_TITLE VARCHAR2(100),
+CONTENTS_WRITER VARCHAR2(100),
+CONTENTS_CONTENT VARCHAR2(500),
+CONTENTS_DATE VARCHAR2(20),
+CONTENTS_READ_COUNT NUMBER(4),
+CONTENTS_HIT_COUNT NUMBER(4)
+);
 
+(7-1) 시퀀스 생성 및 초기화
+CREATE SEQUENCE CONTENTS_SEQ
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 1000000000;
+http://cocodo.tistory.com/12  
+(7-2) 기본적인 데이터 삽입 쿼리
+INSERT INTO WEB_BOARD_TB VALUES
+(CONTENTS_SEQ.NEXTVAL, 'title', 'writer', 'content', 0, 0);
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+(8) VARCHAR2(1) 이 영어 1자리수? 한글 1자리수?
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+(9) mapper.xml 파라미터 타입은 전체 패키지 경로를 써주어야함 eud.doubler.domain.className
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+(10) spring controller 에서 redirect
+(10-1) return "redirect:(redirect URL)";
+(10-2) return "redirect:(redirect URL)";
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 -properties 파일로 DB 계정 설정하는법

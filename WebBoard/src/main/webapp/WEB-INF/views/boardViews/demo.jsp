@@ -4,13 +4,15 @@
 <HTML>
 	<HEAD>
 		<META charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="resources/theme/css/board.css">
+		<link rel="stylesheet" type="text/css" href="/resources/theme/css/font.css">
+		<link rel="stylesheet" type="text/css" href="/resources/theme/css/board.css">
+		<script type="text/javascript" src="/resources/theme/js/board.js"></script>
 	</HEAD>
 	<BODY>
 		<div class="titleWrapper"><h1>Double Board</h1></div>
 		
 		<div class="buttonWrapper">
-			<input type="button" value="작성하기">
+			<input id="doWriteBtn" type="button" value="작성하기">
 		</div>	
 			
 		<div class="tableWrapper">

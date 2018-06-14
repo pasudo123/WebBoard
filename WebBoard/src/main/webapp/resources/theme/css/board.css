@@ -1,25 +1,5 @@
 @CHARSET "UTF-8";
 
-@font-face{
-    font-family: 'NanumSquareEB';
-    src:url(../font/NanumSquareEB.ttf) format('truetype');
-}
-
-@font-face{
-    font-family: 'NanumSquareB';
-    src:url(../font/NanumSquareB.ttf) format('truetype');
-}
-
-/*** 기본 ***/
-body{
-    margin:0 auto;
-    padding:0;
-    width:1000px;
-    height:800px;
-    border:1px solid red;
-    font-family:'NanumSquareEB';
-}
-
 div.titleWrapper{
     width:1000px;
     text-align:center;
