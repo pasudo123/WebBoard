@@ -8,6 +8,7 @@ div.buttonWrapper{
     text-align:right;
 }
 
+/** button 시작**/
 input.writeButton{
     font-family:'NanumSquareEB';
     font-size:15px;
@@ -26,6 +27,26 @@ input.writeButton:active{
 	background-color:#bacced;
 }
 
+input.cancelButton{
+    font-family:'NanumSquareEB';
+    font-size:15px;
+    padding:5px 15px 5px 15px;
+    outline:none;
+    border-radius:15px;
+    border:#a1bffc solid 0.5px;
+    background-color:#dae4f9;
+}
+
+input.cancelButton:hover{
+    cursor:pointer;
+}
+
+input.cancelButton:active{
+	background-color:#bacced;
+}
+
+/** button 마무리 **/
+
 div.tableWrapper{
 	margin-top:50px;
 }
@@ -36,4 +57,25 @@ table{
 
 th{
 	padding:0 5px 0 5px;
+}
+
+table tr:nth-of-type(1) td:nth-of-type(1){
+	width:550px;
+}
+
+table tr:nth-of-type(1) td:nth-of-type(2){
+	width:270px;
+}
+
+table tr:nth-of-type(1) td:nth-of-type(1) input{
+	width:550px;
+}
+
+table tr:nth-of-type(1) td:nth-of-type(2) input{
+	width:270px;
+}
+
+table textarea{
+	width:920px;
+	height:300px;
 }

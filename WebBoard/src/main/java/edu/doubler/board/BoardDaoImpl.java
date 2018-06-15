@@ -20,7 +20,6 @@ public class BoardDaoImpl implements BoardDao{
 	
 	@Override
 	public void addBoardContent(BoardContent boardContent){
-		
 		sqlSession.insert(EnumBoardMapper.NAME_SPACE + "." + EnumBoardMapper.ADD_BOARD_CONTENT, boardContent);
 	}
 }

@@ -16,7 +16,7 @@ import edu.doubler.domain.BoardContent;
 public class BoardServiceImpl implements BoardService{
 	
 	private static Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
-	private static final String DATE_FORMAT = "yy//MM//dd";
+	private static final String DATE_FORMAT = "yy/MM/dd";
 	
 	@Autowired
 	BoardDao boardDao;
@@ -45,6 +45,7 @@ public class BoardServiceImpl implements BoardService{
 		boardContent.setHit(hitCount);
 		boardContent.setDate(today);
 		
+		logger.info("게시글 내용 : " + boardContent.toString());
 		boardDao.addBoardContent(boardContent);
 	}
 	

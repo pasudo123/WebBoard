@@ -7,6 +7,7 @@
 	<HEAD>
 		<link rel="stylesheet" type="text/css" href="/resources/theme/css/font.css">
 		<link rel="stylesheet" type="text/css" href="/resources/theme/css/write.css">
+		<script type="text/javascript" src="/resources/theme/js/board.js"></script>
 	</HEAD>
 	
 	<BODY>
@@ -18,13 +19,13 @@
 					<tr>
 						<th>제목</th>
 						<td><form:input path="title" /></td>
-						<th>작성자<th>
+						<th>작성자</th>
 						<td><form:input path="writer" value="Doubler" /></td>
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td colspan="5">
-							<form:textarea path="content" rows="15" />
+						<td colspan="3">
+							<form:textarea path="content" />
 						</td>
 					</tr>
 				</table>
@@ -32,6 +33,7 @@
 			
 			<div class="buttonWrapper">
 				<input class="writeButton" id="writeBtn" type="submit" value="작성">
+				<input class="cancelButton" id="cancelBtn" type="button" value="취소">
 			</div>
 		</form:form>
 	</BODY>

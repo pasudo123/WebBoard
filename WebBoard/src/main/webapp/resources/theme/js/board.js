@@ -8,8 +8,16 @@ function initClickEvent(){
 	var doWriteBtn = document.querySelector('#doWriteBtn');
 	if(doWriteBtn)
 		doWriteBtn.addEventListener('click', doWrite);
+	
+	var doCancelBtn = document.querySelector('#cancelBtn');
+	if(doCancelBtn)
+		doCancelBtn.addEventListener('click', doCancel);
 }
 
 function doWrite(){
-	location.href = "./write";
+	location.href = "/list/write";
+}
+
+function doCancel(){
+	history.back();
 }
