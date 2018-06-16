@@ -12,48 +12,70 @@ div.buttonWrapper{
 }
 
 div.tableWrapper{
-    margin-top:10px;
+    margin-top:12px;
     width:1000px;
-    height:600px;
-    border:1px solid black;
+    height:auto;
+/*     height:600px; */
 }
 
 table{
     width:1000px;
+    border-collapse: collapse;
 }
 
-tr.tableColumn{
+/** TableHeader **/
+tr.tableColumnHeader{
     text-align:center;
 }
 
-
 th{
+    border-top:1px solid black;
     padding:10px 0 10px 0;
     color:#167ed0
 }
 
-tr.tableColumn th:nth-of-type(1){
+tr.tableColumnHeader th:nth-of-type(1){
     width:100px; /* 100 */
 }
 
-tr.tableColumn th:nth-of-type(2){
+tr.tableColumnHeader th:nth-of-type(2){
     width:450px; /* 550 */
 }
 
-tr.tableColumn th:nth-of-type(3){
+tr.tableColumnHeader th:nth-of-type(3){
     width:100px; /* 650 */
 }
 
-tr.tableColumn th:nth-of-type(4){
+tr.tableColumnHeader th:nth-of-type(4){
     width:150px; /* 800 */
 }
 
-tr.tableColumn th:nth-of-type(5){
+tr.tableColumnHeader th:nth-of-type(5){
     width:100px; /* 900 */
 }
 
-tr.tableColumn th:nth-of-type(6){
+tr.tableColumnHeader th:nth-of-type(6){
     width:100px; /* 1000 */
+}
+
+/** TableData **/
+tr.tableColumnData td{
+    text-align:center;
+    border-top:1px solid black;
+    padding:10px 0 10px 0;
+}
+
+tr.tableColumnData td:first-of-type{
+	display:none;
+}
+
+tr.tableColumnData:last-of-type{
+    border-bottom:1px solid black;
+}
+
+tr.tableColumnData:hover{
+    background-color:beige;
+    cursor:pointer;
 }
 
 a{

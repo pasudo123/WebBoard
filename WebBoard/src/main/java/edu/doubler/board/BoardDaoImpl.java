@@ -1,6 +1,5 @@
 package edu.doubler.board;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -24,6 +23,13 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public List<BoardContent> getBoardTableRows(){
 		return sqlSession.selectList(EnumBoardMapper.NAME_SPACE + "." + EnumBoardMapper.GET_BOARD_TABLE_ROWS);
+	}
+	
+	@Override
+	public BoardContent getBoardContent(int pkn){
+		// 조회수 +1 & 게시글 획득
+		sqlSession.update(EnumBoardMapper.NAME_SPACE + "." + EnumBoardMapper.UPDATE_READ_COUNT, pkn);
+		return sqlSession.selectOne(EnumBoardMapper.NAME_SPACE + "." + EnumBoardMapper.GET_BOARD_CONTENT, pkn);
 	}
 
 	@Override

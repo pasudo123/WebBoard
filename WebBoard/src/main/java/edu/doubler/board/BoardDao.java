@@ -10,5 +10,7 @@ public interface BoardDao {
 	
 	public List<BoardContent> getBoardTableRows();
 	
+	public BoardContent getBoardContent(int pkn);
+	
 	public void addBoardContent(BoardContent boardContent);
 }

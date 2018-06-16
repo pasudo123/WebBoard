@@ -22,6 +22,7 @@
 	<![CDATA[
 		SELECT 
 			w.rn as num,
+			w.CONTENTS_NUMS as pkn,
 			W.CONTENTS_TITLE as title, 
 			W.CONTENTS_WRITER as writer, 
 			W.CONTENTS_CONTENT as content,
@@ -42,12 +43,41 @@
 				FROM 
 					WEB_BOARD_TB 
 				WHERE 
-					ROWNUM <= 30 
+					ROWNUM <= 10 
 				ORDER BY CONTENTS_NUMS DESC
 			) W
 		WHERE rn >= 1
 	]]>
 	</select>
+
+	<select
+	id="getBoardContent"
+	parameterType="java.lang.Integer"
+	resultType="edu.doubler.domain.BoardContent">
+		SELECT 
+			CONTENTS_NUMS as pkn,
+			CONTENTS_TITLE as title, 
+			CONTENTS_WRITER as writer, 
+			CONTENTS_CONTENT as content,
+			CONTENTS_DATE as writeDate,
+			CONTENTS_READ_COUNT as read, 
+			CONTENTS_HIT_COUNT as hit 
+		FROM 
+			WEB_BOARD_TB 
+		WHERE 
+			CONTENTS_NUMS = #{pkn}
+	</select>
+
+	<update
+	id="updateReadCount"
+	parameterType="java.lang.Integer">
+		UPDATE 
+			WEB_BOARD_TB 
+		SET 
+			CONTENTS_READ_COUNT = CONTENTS_READ_COUNT + 1 
+		WHERE 
+			CONTENTS_NUMS = #{pkn}
+	</update>
 
 	<insert
 	id="addBoardContent"
@@ -70,7 +100,7 @@
 				#{title}, 
 				#{writer}, 
 				#{content},
-				#{date},
+				#{writeDate},
 				0,
 				0
 			)

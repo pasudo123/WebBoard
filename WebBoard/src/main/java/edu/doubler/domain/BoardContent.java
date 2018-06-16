@@ -2,6 +2,7 @@ package edu.doubler.domain;
 
 public class BoardContent {
 	private int num;
+	private int pkn;			// 게시글 PK
 	private String title;
 	private String writer;
 	private String content;
@@ -13,6 +14,10 @@ public class BoardContent {
 		return num;
 	}
 
+	public int getPkn(){
+		return pkn;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -39,6 +44,10 @@ public class BoardContent {
 
 	public void setNum(int num) {
 		this.num = num;
+	}
+	
+	public void setPkn(int pkn){
+		this.pkn = pkn;
 	}
 
 	public void setTitle(String title) {

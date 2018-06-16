@@ -4,6 +4,8 @@ public enum EnumBoardMapper {
 	NAME_SPACE("BoardMapper"),
 	GET_FULL_COUNT_CONTENT("getFullCountOnContent"),
 	GET_BOARD_TABLE_ROWS("getBoardTableRows"),
+	GET_BOARD_CONTENT("getBoardContent"),
+	UPDATE_READ_COUNT("updateReadCount"),
 	ADD_BOARD_CONTENT("addBoardContent");
 	
 	private String value;

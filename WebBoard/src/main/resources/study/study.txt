@@ -65,4 +65,8 @@ INSERT INTO WEB_BOARD_TB VALUES
 (10) spring controller 에서 redirect
 (10-1) return "redirect:(redirect URL)";
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+(11) JSTL foreach 구문
+(12) table border-collapse: collapse; (separate) 경계선 합칠지 여부
+(13) history back 사용의 경우 (조심해서 써야함 왜냐하면, 해당 URL의 이전 히스토리로 가기때문에)
+(14) 게시글을 가져올때, connection 을 다시 맺느냐 혹은 처음 list 를 조회할당시에 content를 미리 저장해놓느냐 차이
 -properties 파일로 DB 계정 설정하는법

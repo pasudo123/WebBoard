@@ -39,6 +39,11 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
+	public BoardContent getBoardContent(int pkn){
+		return boardDao.getBoardContent(pkn);
+	}
+	
+	@Override
 	public void addBoardContent(BoardContent boardContent){
 		String title = boardContent.getTitle();
 		String writer = boardContent.getWriter();

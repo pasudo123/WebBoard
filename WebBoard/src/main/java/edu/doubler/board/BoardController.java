@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -15,7 +16,7 @@ import edu.doubler.domain.BoardContent;
 
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("board")
 public class BoardController {
 	
 	private static Logger logger = LoggerFactory.getLogger(BoardController.class);
@@ -34,9 +35,27 @@ public class BoardController {
 		return "boardViews/list";
 	}
 	
+	@RequestMapping(value="/list/{pkn}")
+	public String showBoardContent(
+	@PathVariable int pkn,
+	Model model){
+		
+		logger.info("게시글 조회 시도");
+		BoardContent boardContent = boardService.getBoardContent(pkn);
+		logger.info("게시글 조회 성공");
+		
+		model.addAttribute("boardContent", boardContent);
+		
+		return "boardViews/content";
+	}
+	
 	@RequestMapping(value="/write")
 	public String boardProcess(
 	@ModelAttribute("boardContent") BoardContent boardContent){
+		
+		// 이전 URL 을 알게되는 경우,
+		// 비정상적 접근시, 다시 되돌아가기
+		
 		return "boardViews/write";
 	}
 	
