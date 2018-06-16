@@ -1,6 +1,7 @@
 @CHARSET "UTF-8";
 
 div.titleWrapper{
+    margin-top:50px;
     width:1000px;
     text-align:center;
 }
@@ -55,20 +56,22 @@ tr.tableColumn th:nth-of-type(6){
     width:100px; /* 1000 */
 }
 
-input{
+a{
     font-family:'NanumSquareEB';
     font-size:15px;
+    color:black;
     padding:5px 15px 5px 15px;
     outline:none;
+    text-decoration:none;
     border-radius:15px;
     border:#a1bffc solid 0.5px;
     background-color:#dae4f9;
 }
 
-input:hover{
+a:hover{
     cursor:pointer;
 }
 
-input:active{
+a:active{
 	background-color:#bacced;
 }

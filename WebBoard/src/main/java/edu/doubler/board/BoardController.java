@@ -1,11 +1,13 @@
 package edu.doubler.board;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -13,6 +15,7 @@ import edu.doubler.domain.BoardContent;
 
 
 @Controller
+@RequestMapping("/board")
 public class BoardController {
 	
 	private static Logger logger = LoggerFactory.getLogger(BoardController.class);
@@ -21,26 +24,24 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String showBoardList(){
+	public String showBoardList(Model model){
 		
 		int count = boardService.getFullCountOnContent();
+		List<BoardContent> boardTableRows = boardService.getBoardTableRows();
 		
-		return "boardViews/demo";
+		model.addAttribute("boardTableRows", boardTableRows);
+		
+		return "boardViews/list";
 	}
 	
-	@RequestMapping(value="/list/{boardProcess}")
+	@RequestMapping(value="/write")
 	public String boardProcess(
-	@PathVariable String boardProcess,
 	@ModelAttribute("boardContent") BoardContent boardContent){
-		
-		if("write".equals(boardProcess))
-			return "boardViews/write";
-		
-		return null;
+		return "boardViews/write";
 	}
 	
-	@RequestMapping(value="/list/write/data", method=RequestMethod.POST)
-	public String boardProcess(
+	@RequestMapping(value="/write/data", method=RequestMethod.POST)
+	public String boardWriteProcess(
 	@ModelAttribute("boardContent") BoardContent boardContent){
 		
 		// 글 작성
@@ -48,6 +49,6 @@ public class BoardController {
 		boardService.addBoardContent(boardContent);
 		logger.info("게시글 작성 완료");
 		
-		return "redirect:/list";
+		return "redirect:/board/list";
 	}
 }

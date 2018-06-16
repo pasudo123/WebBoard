@@ -5,7 +5,7 @@ public class BoardContent {
 	private String title;
 	private String writer;
 	private String content;
-	private String date;
+	private String writeDate;
 	private int read;
 	private int hit;
 
@@ -25,8 +25,8 @@ public class BoardContent {
 		return content;
 	}
 
-	public String getDate(){
-		return date;
+	public String getWriteDate(){
+		return writeDate;
 	}
 	
 	public int getRead(){
@@ -53,8 +53,8 @@ public class BoardContent {
 		this.content = content;
 	}
 
-	public void setDate(String date){
-		this.date = date;
+	public void setWriteDate(String writeDate){
+		this.writeDate = writeDate;
 	}
 
 	public void setRead(int read){
@@ -68,6 +68,6 @@ public class BoardContent {
 	@Override
 	public String toString() {
 		return "BoardContent [num=" + num + ", title=" + title + ", writer=" + writer + ", content=" + content
-				+ ", date=" + date + ", read=" + read + ", hit=" + hit + "]";
+				+ ", writeDate=" + writeDate + ", read=" + read + ", hit=" + hit + "]";
 	}
 }

@@ -1,7 +1,9 @@
 package edu.doubler.board;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.junit.Test;
@@ -27,6 +29,16 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
+	public List<BoardContent> getBoardTableRows(){
+		List<BoardContent> boardTableRows = boardDao.getBoardTableRows();
+		
+		logger.info(boardTableRows.size() + "");
+		logger.info(boardTableRows.isEmpty() + "");
+		
+		return boardTableRows;
+	}
+	
+	@Override
 	public void addBoardContent(BoardContent boardContent){
 		String title = boardContent.getTitle();
 		String writer = boardContent.getWriter();
@@ -43,7 +55,7 @@ public class BoardServiceImpl implements BoardService{
 		SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT, Locale.KOREA);
 		today = formatter.format(date);
 		boardContent.setHit(hitCount);
-		boardContent.setDate(today);
+		boardContent.setWriteDate(today);
 		
 		logger.info("게시글 내용 : " + boardContent.toString());
 		boardDao.addBoardContent(boardContent);

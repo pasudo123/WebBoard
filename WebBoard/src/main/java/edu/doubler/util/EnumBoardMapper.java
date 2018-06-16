@@ -2,7 +2,8 @@ package edu.doubler.util;
 
 public enum EnumBoardMapper {
 	NAME_SPACE("BoardMapper"),
-	FULL_COUNT_CONTENT("getFullCountOnContent"),
+	GET_FULL_COUNT_CONTENT("getFullCountOnContent"),
+	GET_BOARD_TABLE_ROWS("getBoardTableRows"),
 	ADD_BOARD_CONTENT("addBoardContent");
 	
 	private String value;

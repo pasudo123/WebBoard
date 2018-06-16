@@ -26,6 +26,7 @@
 	<context:component-scan base-package="edu.doubler" />
 	
 	<util:properties id="props" location="classpath:/props/config.properties" />
+	
 	<!-- 	local Database -->
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="#{props['oracle.driverClassName']}" />

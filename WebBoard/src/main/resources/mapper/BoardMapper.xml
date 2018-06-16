@@ -15,6 +15,39 @@
 			WEB_BOARD_TB		
 	]]>	
 	</select>
+	
+	<select
+	id="getBoardTableRows"
+	resultType="edu.doubler.domain.BoardContent">
+	<![CDATA[
+		SELECT 
+			w.rn as num,
+			W.CONTENTS_TITLE as title, 
+			W.CONTENTS_WRITER as writer, 
+			W.CONTENTS_CONTENT as content,
+			W.CONTENTS_DATE as writeDate,
+			W.CONTENTS_READ_COUNT as read, 
+			W.CONTENTS_HIT_COUNT as hit
+		FROM 
+			(
+				SELECT 
+					ROWNUM as rn, 
+					CONTENTS_NUMS, 
+					CONTENTS_TITLE, 
+					CONTENTS_WRITER, 
+					CONTENTS_CONTENT, 
+					CONTENTS_DATE, 
+					CONTENTS_READ_COUNT, 
+					CONTENTS_HIT_COUNT 
+				FROM 
+					WEB_BOARD_TB 
+				WHERE 
+					ROWNUM <= 30 
+				ORDER BY CONTENTS_NUMS DESC
+			) W
+		WHERE rn >= 1
+	]]>
+	</select>
 
 	<insert
 	id="addBoardContent"
