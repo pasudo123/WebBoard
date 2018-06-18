@@ -69,4 +69,6 @@ INSERT INTO WEB_BOARD_TB VALUES
 (12) table border-collapse: collapse; (separate) 경계선 합칠지 여부
 (13) history back 사용의 경우 (조심해서 써야함 왜냐하면, 해당 URL의 이전 히스토리로 가기때문에)
 (14) 게시글을 가져올때, connection 을 다시 맺느냐 혹은 처음 list 를 조회할당시에 content를 미리 저장해놓느냐 차이
+(15) junit : controller & service & repository 각각 레이어에서 테스팅
+(16) 자바 스크립트 현재 URL가져오기 그리고 내부적으로 값 확인하는 방법
 -properties 파일로 DB 계정 설정하는법

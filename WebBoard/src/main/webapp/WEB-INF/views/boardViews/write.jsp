@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE HTML>
@@ -18,7 +19,7 @@
 				<table>
 					<tr>
 						<th>제목</th>
-						<td><form:input path="title" /></td>
+						<td><form:input path="title" value="${}"/></td>
 						<th>작성자</th>
 						<td><form:input path="writer" value="Doubler" /></td>
 					</tr>

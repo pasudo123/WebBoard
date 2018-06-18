@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import edu.doubler.domain.BoardContent;
 import edu.doubler.util.EnumBoardMapper;
 
-@Repository
+@Repository("BoardDao")
 public class BoardDaoImpl implements BoardDao{
 	
 	@Autowired
@@ -35,5 +35,10 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public void addBoardContent(BoardContent boardContent){
 		sqlSession.insert(EnumBoardMapper.NAME_SPACE + "." + EnumBoardMapper.ADD_BOARD_CONTENT, boardContent);
+	}
+	
+	@Override
+	public void deleteBoardContent(int pkn){
+		sqlSession.delete(EnumBoardMapper.NAME_SPACE + "." + EnumBoardMapper.DELETE_BOARD_CONTENT, pkn);
 	}
 }

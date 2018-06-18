@@ -6,7 +6,8 @@ public enum EnumBoardMapper {
 	GET_BOARD_TABLE_ROWS("getBoardTableRows"),
 	GET_BOARD_CONTENT("getBoardContent"),
 	UPDATE_READ_COUNT("updateReadCount"),
-	ADD_BOARD_CONTENT("addBoardContent");
+	ADD_BOARD_CONTENT("addBoardContent"),
+	DELETE_BOARD_CONTENT("deleteBoardContent");
 	
 	private String value;
 	

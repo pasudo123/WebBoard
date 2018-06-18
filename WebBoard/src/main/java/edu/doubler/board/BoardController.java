@@ -2,6 +2,8 @@ package edu.doubler.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.doubler.domain.BoardContent;
 
 
-@Controller
+@Controller("BoardController")
 @RequestMapping("board")
 public class BoardController {
 	
@@ -24,7 +26,7 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	@RequestMapping(value="/list", method=RequestMethod.GET)
+	@RequestMapping(value = "/list")
 	public String showBoardList(Model model){
 		
 		int count = boardService.getFullCountOnContent();
@@ -35,7 +37,7 @@ public class BoardController {
 		return "boardViews/list";
 	}
 	
-	@RequestMapping(value="/list/{pkn}")
+	@RequestMapping(value = "/list/{pkn}")
 	public String showBoardContent(
 	@PathVariable int pkn,
 	Model model){
@@ -49,7 +51,7 @@ public class BoardController {
 		return "boardViews/content";
 	}
 	
-	@RequestMapping(value="/write")
+	@RequestMapping(value = "/write")
 	public String boardProcess(
 	@ModelAttribute("boardContent") BoardContent boardContent){
 		
@@ -59,7 +61,7 @@ public class BoardController {
 		return "boardViews/write";
 	}
 	
-	@RequestMapping(value="/write/data", method=RequestMethod.POST)
+	@RequestMapping(value = "/write/data", method=RequestMethod.POST)
 	public String boardWriteProcess(
 	@ModelAttribute("boardContent") BoardContent boardContent){
 		
@@ -67,6 +69,30 @@ public class BoardController {
 		logger.info("게시글 작성 시도");
 		boardService.addBoardContent(boardContent);
 		logger.info("게시글 작성 완료");
+		
+		return "redirect:/board/list";
+	}
+	
+	@RequestMapping(value = "/modify", method=RequestMethod.POST)
+	public String boardModifyProcess(
+	@ModelAttribute("boardContent") BoardContent boardContent){
+		
+		logger.info("게시글 수정 시도");
+		
+		logger.info("게시글 수정 완료");
+		
+		return null;
+	}
+	
+	@RequestMapping(value = "/delete", method=RequestMethod.GET)
+	public String boardDeleteProcess(HttpServletRequest request){
+		
+		int pkn = Integer.parseInt(request.getParameter("pkn"));
+		
+		// 글 삭제
+		logger.info("게시글 삭제 시도");
+		boardService.deleteBoardContent(pkn);
+		logger.info("게시글 삭제 완료");
 		
 		return "redirect:/board/list";
 	}

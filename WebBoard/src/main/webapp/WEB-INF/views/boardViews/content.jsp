@@ -13,27 +13,28 @@
 	<BODY>
 		<div class="titleWrapper"><h1>Double Write</h1></div>
 	
-		<form:form method="POST" action="./write/data" modelAttribute="boardContent">
+		<form:form method="POST" action="./modify" modelAttribute="boardContent">
 			<div class="tableWrapper">
 				<table>
 					<tr>
 						<th>제목</th>
-						<td><form:label path="title" /></td>
+						<td><form:input path="title" value="${title}"/></td>
 						<th>작성자</th>
-						<td><form:label path="writer" value="Doubler" /></td>
+						<td><form:input path="writer" value="${writer}" /></td>
 					</tr>
 					<tr>
 						<th>내용</th>
 						<td colspan="3">
-							<form:textarea path="content" />
+							<form:textarea path="content" value="${content}"/>
 						</td>
 					</tr>
 				</table>
 			</div>
 			
 			<div class="buttonWrapper">
-				<input class="writeButton" id="writeBtn" type="submit" value="작성">
-				<input class="cancelButton" id="cancelBtn" type="button" value="취소">
+				<input class="writeButton" id="writeBtn" type="submit" value="수정">
+				<input class="deleteButton" id="deleteBtn" type="button" value="삭제">
+				<input class="cancelButton" id="cancelBtn" type="button" value="뒤로">
 			</div>
 		</form:form>
 	</BODY>

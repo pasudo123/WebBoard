@@ -106,4 +106,16 @@
 			)
 	]]>
 	</insert>
+	
+	<delete
+	id="deleteBoardContent"
+	parameterType="java.lang.Integer"
+	>
+	<![CDATA[
+		DELETE FROM 
+			WEB_BOARD_TB
+		WHERE 
+			CONTENTS_NUMS = #{pkn}			
+	]]>	
+	</delete>
 </mapper>

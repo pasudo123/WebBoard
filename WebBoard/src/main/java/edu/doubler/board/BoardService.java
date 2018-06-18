@@ -13,4 +13,6 @@ public interface BoardService {
 	public BoardContent getBoardContent(int pkn);
 	
 	public void addBoardContent(BoardContent boardContent);
+	
+	public void deleteBoardContent(int pkn);
 }
