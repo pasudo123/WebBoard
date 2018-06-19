@@ -19,9 +19,9 @@
 				<table>
 					<tr>
 						<th>제목</th>
-						<td><form:input path="title" value="${}"/></td>
+						<td><form:input path="title" value="${boardContent.title}"/></td>
 						<th>작성자</th>
-						<td><form:input path="writer" value="Doubler" /></td>
+						<td><form:input path="writer" value="${boardContent.writer}" /></td>
 					</tr>
 					<tr>
 						<th>내용</th>

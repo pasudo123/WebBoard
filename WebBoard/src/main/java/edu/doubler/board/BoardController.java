@@ -25,9 +25,11 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
-	
+
 	@RequestMapping(value = "/list")
-	public String showBoardList(Model model){
+	public String showBoardList(Model model, HttpServletRequest request){
+		
+		StringBuffer URL = request.getRequestURL();
 		
 		int count = boardService.getFullCountOnContent();
 		List<BoardContent> boardTableRows = boardService.getBoardTableRows();
@@ -41,11 +43,12 @@ public class BoardController {
 	public String showBoardContent(
 	@PathVariable int pkn,
 	Model model){
-		
+
 		logger.info("게시글 조회 시도");
 		BoardContent boardContent = boardService.getBoardContent(pkn);
 		logger.info("게시글 조회 성공");
 		
+		model.addAttribute("pkn", pkn);
 		model.addAttribute("boardContent", boardContent);
 		
 		return "boardViews/content";
@@ -75,18 +78,20 @@ public class BoardController {
 	
 	@RequestMapping(value = "/modify", method=RequestMethod.POST)
 	public String boardModifyProcess(
-	@ModelAttribute("boardContent") BoardContent boardContent){
+	@ModelAttribute("boardContent") BoardContent boardContent,
+	HttpServletRequest request){
 		
 		logger.info("게시글 수정 시도");
-		
+		boardService.updateBoardContent(boardContent);
 		logger.info("게시글 수정 완료");
 		
-		return null;
+		return "redirect:/board/list";
 	}
 	
 	@RequestMapping(value = "/delete", method=RequestMethod.GET)
 	public String boardDeleteProcess(HttpServletRequest request){
 		
+		logger.info(request.getParameter("pkn"));
 		int pkn = Integer.parseInt(request.getParameter("pkn"));
 		
 		// 글 삭제
@@ -95,5 +100,9 @@ public class BoardController {
 		logger.info("게시글 삭제 완료");
 		
 		return "redirect:/board/list";
+	}
+	
+	private synchronized void reWriteURL(String URL){
+		
 	}
 }

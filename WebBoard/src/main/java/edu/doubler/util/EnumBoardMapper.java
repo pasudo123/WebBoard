@@ -7,7 +7,8 @@ public enum EnumBoardMapper {
 	GET_BOARD_CONTENT("getBoardContent"),
 	UPDATE_READ_COUNT("updateReadCount"),
 	ADD_BOARD_CONTENT("addBoardContent"),
-	DELETE_BOARD_CONTENT("deleteBoardContent");
+	DELETE_BOARD_CONTENT("deleteBoardContent"),
+	UPDATE_BOARD_CONTENT("updateBoardContent");
 	
 	private String value;
 	

@@ -15,4 +15,6 @@ public interface BoardService {
 	public void addBoardContent(BoardContent boardContent);
 	
 	public void deleteBoardContent(int pkn);
+	
+	public void updateBoardContent(BoardContent boardContent);
 }

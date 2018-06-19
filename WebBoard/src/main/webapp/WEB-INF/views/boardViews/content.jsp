@@ -13,7 +13,7 @@
 	<BODY>
 		<div class="titleWrapper"><h1>Double Write</h1></div>
 	
-		<form:form method="POST" action="./modify" modelAttribute="boardContent">
+		<form:form method="POST" action="../modify" modelAttribute="boardContent">
 			<div class="tableWrapper">
 				<table>
 					<tr>
@@ -26,15 +26,16 @@
 						<th>내용</th>
 						<td colspan="3">
 							<form:textarea path="content" value="${content}"/>
+							<form:hidden path="pkn" value="${pkn}" />
 						</td>
 					</tr>
 				</table>
 			</div>
 			
 			<div class="buttonWrapper">
-				<input class="writeButton" id="writeBtn" type="submit" value="수정">
+				<input class="modifyButton" id="modifyBtn" type="submit" value="수정">
 				<input class="deleteButton" id="deleteBtn" type="button" value="삭제">
-				<input class="cancelButton" id="cancelBtn" type="button" value="뒤로">
+				<input class="showListButton" id="showListBtn" type="button" value="목록보기">
 			</div>
 		</form:form>
 	</BODY>

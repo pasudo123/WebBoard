@@ -20,6 +20,14 @@ function initClickEvent(){
 	var doCancelBtn = document.querySelector('#cancelBtn');
 	if(doCancelBtn)
 		doCancelBtn.addEventListener('click', doCancel);
+	
+	var doShowListBtn = document.querySelector('#showListBtn');
+	if(doShowListBtn)
+		doShowListBtn.addEventListener('click', doShowList);
+}
+
+function doShowList(){
+	location.href="../list";
 }
 
 function doCancel(){
@@ -36,7 +44,7 @@ function doDelete(){
 	var urlElement = currentURL.href.split("/");
 	pkn = urlElement[urlElement.length-1];
 	
-	location.href = "../list/delete?pkn=" + pkn;
+	location.href = "../delete?pkn=" + pkn;
 }
 
 function showContent(){

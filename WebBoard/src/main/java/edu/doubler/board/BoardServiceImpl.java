@@ -30,9 +30,6 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardContent> getBoardTableRows(){
 		List<BoardContent> boardTableRows = boardDao.getBoardTableRows();
 		
-		logger.info(boardTableRows.size() + "");
-		logger.info(boardTableRows.isEmpty() + "");
-		
 		return boardTableRows;
 	}
 	
@@ -67,5 +64,10 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void deleteBoardContent(int pkn){
 		boardDao.deleteBoardContent(pkn);
+	}
+	
+	@Override
+	public void updateBoardContent(BoardContent boardContent){
+		boardDao.updateBoardContent(boardContent);
 	}
 }

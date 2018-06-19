@@ -118,4 +118,17 @@
 			CONTENTS_NUMS = #{pkn}			
 	]]>	
 	</delete>
+	
+	<update
+	id="updateBoardContent"
+	parameterType="edu.doubler.domain.BoardContent">
+		UPDATE 
+			WEB_BOARD_TB 
+		SET 
+		  	CONTENTS_TITLE = #{title},
+		  	CONTENTS_WRITER = #{writer},
+		  	CONTENTS_CONTENT = #{content}
+		WHERE 
+		  	CONTENTS_NUMS = #{pkn}
+	</update>
 </mapper>

@@ -41,4 +41,9 @@ public class BoardDaoImpl implements BoardDao{
 	public void deleteBoardContent(int pkn){
 		sqlSession.delete(EnumBoardMapper.NAME_SPACE + "." + EnumBoardMapper.DELETE_BOARD_CONTENT, pkn);
 	}
+	
+	@Override
+	public void updateBoardContent(BoardContent boardContent){
+		sqlSession.update(EnumBoardMapper.NAME_SPACE + "." + EnumBoardMapper.UPDATE_BOARD_CONTENT, boardContent);
+	}
 }

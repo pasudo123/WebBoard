@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans 
 	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -24,6 +25,16 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 인터셉터 config 설정 -->
+	<!-- Configuring interceptors based on URI -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/board/**" />
+			<mvc:exclude-mapping path="" />
+			<beans:bean class="edu.doubler.util.RequestProcessingURL"></beans:bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 	<context:component-scan base-package="edu.doubler" />
 	
 	<util:properties id="props" location="classpath:/props/config.properties" />

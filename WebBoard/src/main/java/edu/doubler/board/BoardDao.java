@@ -15,4 +15,6 @@ public interface BoardDao {
 	public void addBoardContent(BoardContent boardContent);
 	
 	public void deleteBoardContent(int pkn);
+	
+	public void updateBoardContent(BoardContent boardContent);
 }
