@@ -9,6 +9,7 @@
 	<HEAD>
 	<META charset="UTF-8">
 		<link rel="stylesheet" type="text/css"href="/resources/theme/css/font.css">
+		<link rel="stylesheet" type="text/css"href="/resources/theme/css/pagination.css">
 		<link rel="stylesheet" type="text/css"href="/resources/theme/css/list.css">
 		<script type="text/javascript" src="/resources/theme/js/board.js"></script>
 	</HEAD>
@@ -18,7 +19,7 @@
 		</div>
 	
 		<div class="buttonWrapper">
-			<a id="doWriteBtn" href="<c:url value = "./write"/>">작성하기</a>
+			<a class="writeBtn" id="doWriteBtn" href="<c:url value = "./write"/>">작성하기</a>
 		</div>
 	
 		<div class="tableWrapper">
@@ -48,5 +49,16 @@
 				</c:forEach>
 			</table>
 		</div>
+
+		<div class="paginationWrapper">
+			<a href="<c:url value = "./page/prev"/>" class="direction prev">이전</a>
+			<a href="<c:url value = "./page/${1}"/>">1</a>
+			<a href="<c:url value = "./page/${2}"/>">2</a>
+			<a href="<c:url value = "./page/${3}"/>">3</a>
+			<a href="<c:url value = "./page/${4}"/>">4</a>
+			<a href="<c:url value = "./page/${5}"/>">4</a>
+			<a href="<c:url value = "./page/next"/>" class="direction next">다음</a>
+		</div>
+		
 	</BODY>
 </HTML>

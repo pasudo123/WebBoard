@@ -13,61 +13,76 @@ import org.springframework.stereotype.Service;
 import edu.doubler.domain.BoardContent;
 
 @Service("BoardService")
-public class BoardServiceImpl implements BoardService{
-	
+public class BoardServiceImpl implements BoardService {
+
 	private static Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
 	private static final String DATE_FORMAT = "yy/MM/dd";
-	
+
 	@Autowired
 	BoardDao boardDao;
-	
+
 	@Override
-	public int getFullCountOnContent(){
+	public int getFullCountOnContent() {
 		return boardDao.getFullCountOnContent();
 	}
-	
+
 	@Override
-	public List<BoardContent> getBoardTableRows(){
+	public List<BoardContent> getBoardTableRows() {
 		List<BoardContent> boardTableRows = boardDao.getBoardTableRows();
-		
+
 		return boardTableRows;
 	}
-	
+
 	@Override
-	public BoardContent getBoardContent(int pkn){
+	public BoardContent getBoardContent(int pkn) {
 		return boardDao.getBoardContent(pkn);
 	}
-	
+
 	@Override
-	public void addBoardContent(BoardContent boardContent){
+	public void addBoardContent(BoardContent boardContent) {
 		String title = boardContent.getTitle();
 		String writer = boardContent.getWriter();
 		String content = boardContent.getContent();
 		String today = null;
 		int hitCount = 0;
-		
+
 		// 제목, 작성자, 내용
-//		logger.info(title);
-//		logger.info(writer);
-//		logger.info(content);
-		
+		// logger.info(title);
+		// logger.info(writer);
+		// logger.info(content);
+
 		Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT, Locale.KOREA);
 		today = formatter.format(date);
 		boardContent.setHit(hitCount);
 		boardContent.setWriteDate(today);
-		
+
 		logger.info("게시글 내용 : " + boardContent.toString());
 		boardDao.addBoardContent(boardContent);
 	}
-	
+
 	@Override
-	public void deleteBoardContent(int pkn){
+	public void deleteBoardContent(int pkn) {
 		boardDao.deleteBoardContent(pkn);
 	}
-	
+
 	@Override
-	public void updateBoardContent(BoardContent boardContent){
+	public void updateBoardContent(BoardContent boardContent) {
 		boardDao.updateBoardContent(boardContent);
+	}
+
+	@Override
+	public void pagingProcessing(String pagingCommand) {
+		logger.info("paging : " + pagingCommand);
+		
+		if ("prev".equals(pagingCommand)) {
+			
+		}
+		else if ("next".equals(pagingCommand)) {
+
+		}
+		else{
+			int pageNumber = Integer.parseInt(pagingCommand);
+		}
 	}
 }

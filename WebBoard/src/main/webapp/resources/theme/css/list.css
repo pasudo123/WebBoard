@@ -78,7 +78,7 @@ tr.tableColumnData:hover{
     cursor:pointer;
 }
 
-a{
+a.writeBtn{
     font-family:'NanumSquareEB';
     font-size:15px;
     color:black;
@@ -90,10 +90,10 @@ a{
     background-color:#dae4f9;
 }
 
-a:hover{
+a.writeBtn:hover{
     cursor:pointer;
 }
 
-a:active{
+a.writeBtn:active{
 	background-color:#bacced;
 }

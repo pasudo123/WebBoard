@@ -1,8 +1,11 @@
 package edu.doubler.board;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,11 +33,18 @@ public class BoardController {
 	public String showBoardList(Model model, HttpServletRequest request){
 		
 		StringBuffer URL = request.getRequestURL();
+		HttpSession session = request.getSession();
+		
+		if (session.getAttribute("paging") != null) {
+			String pagingInfo = String.valueOf(session.getAttribute("paging"));
+			logger.info(":: PagingInfo :: " + pagingInfo);
+		}
 		
 		int count = boardService.getFullCountOnContent();
 		List<BoardContent> boardTableRows = boardService.getBoardTableRows();
 		
 		model.addAttribute("boardTableRows", boardTableRows);
+		
 		
 		return "boardViews/list";
 	}
@@ -102,7 +112,45 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	private synchronized void reWriteURL(String URL){
+	@RequestMapping(value = "/page/{pagingCommand}", method=RequestMethod.GET)
+	public void boardPagingProcess(
+	@PathVariable String pagingCommand,
+	HttpServletRequest request,
+	HttpServletResponse response) throws IOException{
 		
+		boardService.pagingProcessing(pagingCommand);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("paging", pagingCommand);
+		
+		response.sendRedirect("/board/list");
+	}
+	
+	
+	/**ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	 * 
+	 * 페이징처리 위한 데이터 삽입
+	 * 
+	 * ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ**/
+	@RequestMapping(value = "/insert_batch")
+	public String batch(){
+		String title = "title";
+		String writer = "writer";
+		String content = "content";
+		String date = "18/06/";
+		
+		int count = boardService.getFullCountOnContent();
+		
+		for(int i = count + 1; i <= count + 500; i++){
+			BoardContent boardContent = new BoardContent();
+			
+			boardContent.setTitle(title + i +"");
+			boardContent.setWriter(writer + i + "");
+			boardContent.setContent(content + i + "");
+			
+			boardService.addBoardContent(boardContent);
+		}
+		
+		return "redirect:/board/list";
 	}
 }

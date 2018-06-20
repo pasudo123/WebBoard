@@ -17,4 +17,6 @@ public interface BoardService {
 	public void deleteBoardContent(int pkn);
 	
 	public void updateBoardContent(BoardContent boardContent);
+	
+	public void pagingProcessing(String pagingCommand);
 }
