@@ -2,6 +2,7 @@
 /** Load Event : 문서가 전체 로드되어 끝날 때 이벤트 발생 **/
 window.onload = function(){
 	initClickEvent();
+	initPagePosition();
 };
 
 function initClickEvent(){
@@ -19,18 +20,25 @@ function initClickEvent(){
 	
 	var doCancelBtn = document.querySelector('#cancelBtn');
 	if(doCancelBtn)
-		doCancelBtn.addEventListener('click', doCancel);
+		doCancelBtn.addEventListener('click', doHistoryBack);
 	
 	var doShowListBtn = document.querySelector('#showListBtn');
 	if(doShowListBtn)
-		doShowListBtn.addEventListener('click', doShowList);
+		doShowListBtn.addEventListener('click', doHistoryBack);
 }
 
-function doShowList(){
-	location.href="../list";
+// 색깔 입히기
+function initPagePosition(){
+	var requestURL = window.location.href;
+	var slashesArray = requestURL.split("/");
+	var pagePosition = slashesArray[slashesArray.length-1];
+	
+	console.log(pagePosition);
+	var aTag = document.querySelector("#pagePos" + pagePosition);
+	aTag.style["background-color"]="#bacced";
 }
 
-function doCancel(){
+function doHistoryBack(){
 	history.back();
 }
 
@@ -50,7 +58,9 @@ function doDelete(){
 function showContent(){
 	var tdList = this.querySelectorAll('td');
 	var pkn = tdList[0].innerText;
+	var page_position = tdList[1].innerText;
+	
 	console.log("pkn : " + pkn);
 	
-	location.href = "./list/" + pkn;
+	location.href = "../content/" + pkn;
 }

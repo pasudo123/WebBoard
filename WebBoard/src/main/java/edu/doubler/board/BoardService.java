@@ -1,6 +1,7 @@
 package edu.doubler.board;
 
 import java.util.List;
+import java.util.Map;
 
 import edu.doubler.domain.BoardContent;
 
@@ -8,7 +9,7 @@ public interface BoardService {
 	
 	public int getFullCountOnContent();
 	
-	public List<BoardContent> getBoardTableRows();
+	public List<BoardContent> getBoardTableRows(Map<String, Integer> rangeMap);
 	
 	public BoardContent getBoardContent(int pkn);
 	
@@ -18,5 +19,5 @@ public interface BoardService {
 	
 	public void updateBoardContent(BoardContent boardContent);
 	
-	public void pagingProcessing(String pagingCommand);
+	public Map<String, Integer> pagingProcessing(String pagePosition);
 }

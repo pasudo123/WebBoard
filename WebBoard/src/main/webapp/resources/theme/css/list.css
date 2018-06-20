@@ -65,7 +65,11 @@ tr.tableColumnData td{
     padding:10px 0 10px 0;
 }
 
-tr.tableColumnData td:first-of-type{
+tr.tableColumnData td:nth-of-type(1){
+	display:none;
+}
+
+tr.tableColumnData td:nth-of-type(2){
 	display:none;
 }
 

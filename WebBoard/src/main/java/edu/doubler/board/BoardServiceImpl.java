@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +28,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardContent> getBoardTableRows() {
-		List<BoardContent> boardTableRows = boardDao.getBoardTableRows();
+	public List<BoardContent> getBoardTableRows(Map<String, Integer> rangeMap) {
+		List<BoardContent> boardTableRows = boardDao.getBoardTableRows(rangeMap);
 
 		return boardTableRows;
 	}
@@ -40,16 +41,16 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void addBoardContent(BoardContent boardContent) {
-		String title = boardContent.getTitle();
-		String writer = boardContent.getWriter();
-		String content = boardContent.getContent();
+//		String title = boardContent.getTitle();
+//		String writer = boardContent.getWriter();
+//		String content = boardContent.getContent();
 		String today = null;
 		int hitCount = 0;
 
-		// 제목, 작성자, 내용
-		// logger.info(title);
-		// logger.info(writer);
-		// logger.info(content);
+//		 제목, 작성자, 내용
+//		 logger.info(title);
+//		 logger.info(writer);
+//		 logger.info(content);
 
 		Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT, Locale.KOREA);
@@ -72,17 +73,23 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void pagingProcessing(String pagingCommand) {
-		logger.info("paging : " + pagingCommand);
+	public Map<String, Integer> pagingProcessing(String pagePosition) {
+		logger.info("pagePosition : " + pagePosition);
 		
-		if ("prev".equals(pagingCommand)) {
-			
+		PagingService pagingService = new PagingService();
+		
+		if("prev".equals("pagePosition")){
+			return null;
 		}
-		else if ("next".equals(pagingCommand)) {
-
+		else if("next".equals("pagePostion")){
+			return null;
 		}
+		// 숫자
 		else{
-			int pageNumber = Integer.parseInt(pagingCommand);
+			int pageNumber = Integer.parseInt(pagePosition);
+			pagingService.setCurrentPageNPosition(pageNumber);
+			
+			return pagingService.getPageNumber();
 		}
 	}
 }

@@ -18,6 +18,7 @@
 	
 	<select
 	id="getBoardTableRows"
+	parameterType="java.util.Map"
 	resultType="edu.doubler.domain.BoardContent">
 	<![CDATA[
 		SELECT 
@@ -43,10 +44,10 @@
 				FROM 
 					WEB_BOARD_TB 
 				WHERE 
-					ROWNUM <= 10 
+					ROWNUM <= #{endNumber}
 				ORDER BY CONTENTS_NUMS DESC
 			) W
-		WHERE rn >= 1
+		WHERE rn >= #{startNumber}
 	]]>
 	</select>
 

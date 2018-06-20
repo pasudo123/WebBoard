@@ -1,11 +1,9 @@
 package edu.doubler.board;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.doubler.domain.BoardContent;
 
-
 @Controller("BoardController")
 @RequestMapping("board")
 public class BoardController {
@@ -28,28 +25,31 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
-
+	
 	@RequestMapping(value = "/list")
-	public String showBoardList(Model model, HttpServletRequest request){
+	public String showInitBoardList(Model model){
+		return "redirect:/board/list/1";
+	}
+	
+	@RequestMapping(value = "/list/{pagePosition}")
+	public String showBoardList(
+	Model model, HttpServletRequest request,
+	@PathVariable String pagePosition){
 		
 		StringBuffer URL = request.getRequestURL();
-		HttpSession session = request.getSession();
 		
-		if (session.getAttribute("paging") != null) {
-			String pagingInfo = String.valueOf(session.getAttribute("paging"));
-			logger.info(":: PagingInfo :: " + pagingInfo);
-		}
+		Map<String, Integer> rangeMap = null;
+		rangeMap = boardService.pagingProcessing(pagePosition);
 		
-		int count = boardService.getFullCountOnContent();
-		List<BoardContent> boardTableRows = boardService.getBoardTableRows();
-		
+		// 게시판 데이터 반환
+		List<BoardContent> boardTableRows = boardService.getBoardTableRows(rangeMap);
 		model.addAttribute("boardTableRows", boardTableRows);
-		
+		model.addAttribute("pagePosition", pagePosition);
 		
 		return "boardViews/list";
 	}
 	
-	@RequestMapping(value = "/list/{pkn}")
+	@RequestMapping(value = "/content/{pkn}")
 	public String showBoardContent(
 	@PathVariable int pkn,
 	Model model){
@@ -98,7 +98,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@RequestMapping(value = "/delete", method=RequestMethod.GET)
+	@RequestMapping(value = "/delete")
 	public String boardDeleteProcess(HttpServletRequest request){
 		
 		logger.info(request.getParameter("pkn"));
@@ -112,24 +112,9 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@RequestMapping(value = "/page/{pagingCommand}", method=RequestMethod.GET)
-	public void boardPagingProcess(
-	@PathVariable String pagingCommand,
-	HttpServletRequest request,
-	HttpServletResponse response) throws IOException{
-		
-		boardService.pagingProcessing(pagingCommand);
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("paging", pagingCommand);
-		
-		response.sendRedirect("/board/list");
-	}
-	
-	
 	/**ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	 * 
-	 * 페이징처리 위한 데이터 삽입
+	 * 페이징처리 위한 데이터 삽입 [ 테스트 로직  ]
 	 * 
 	 * ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ**/
 	@RequestMapping(value = "/insert_batch")

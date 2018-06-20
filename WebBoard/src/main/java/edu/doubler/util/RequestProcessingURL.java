@@ -17,7 +17,7 @@ public class RequestProcessingURL extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		logger.info(":: preHandle ::");
+//		logger.info(":: preHandle ::");
 		String requestURL = request.getRequestURL().toString();
 		logger.info("Request URL : " + requestURL);
 		
@@ -36,12 +36,12 @@ public class RequestProcessingURL extends HandlerInterceptorAdapter {
 	// controller 가 수행된 이후 view를 호출하기 전에 호출
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-		logger.info(":: postHandle ::");
+//		logger.info(":: postHandle ::");
 	}
 	
 	// view 작업이 완료된 후 호출
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)throws Exception {
-		logger.info(":: afterCompletion ::");
+//		logger.info(":: afterCompletion ::");
 	}
 }

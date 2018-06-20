@@ -19,7 +19,7 @@
 		</div>
 	
 		<div class="buttonWrapper">
-			<a class="writeBtn" id="doWriteBtn" href="<c:url value = "./write"/>">작성하기</a>
+			<a class="writeBtn" id="doWriteBtn" href="<c:url value = "../write"/>">작성하기</a>
 		</div>
 	
 		<div class="tableWrapper">
@@ -37,6 +37,7 @@
 					<tr class="tableColumnData">
 						<!-- hidden -->
 						<td>${boardTableRow.pkn}</td>
+						<td>${pagePosition}</td>
 						
 						<!-- show -->						
 						<td>${boardTableRow.num}</td>
@@ -51,14 +52,13 @@
 		</div>
 
 		<div class="paginationWrapper">
-			<a href="<c:url value = "./page/prev"/>" class="direction prev">이전</a>
-			<a href="<c:url value = "./page/${1}"/>">1</a>
-			<a href="<c:url value = "./page/${2}"/>">2</a>
-			<a href="<c:url value = "./page/${3}"/>">3</a>
-			<a href="<c:url value = "./page/${4}"/>">4</a>
-			<a href="<c:url value = "./page/${5}"/>">4</a>
-			<a href="<c:url value = "./page/next"/>" class="direction next">다음</a>
+			<a href="<c:url value = "./prev"/>" class="direction prev">이전</a>
+			<a id="pagePos${1}" href="<c:url value = "./${1}" />">1</a>
+			<a id="pagePos${2}" href="<c:url value = "./${2}" />">2</a>
+			<a id="pagePos${3}" href="<c:url value = "./${3}" />">3</a>
+			<a id="pagePos${4}" href="<c:url value = "./${4}" />">4</a>
+			<a id="pagePos${5}" href="<c:url value = "./${5}" />">5</a>
+			<a href="<c:url value = "./next"/>" class="direction next">다음</a>
 		</div>
-		
 	</BODY>
 </HTML>

@@ -1,6 +1,7 @@
 package edu.doubler.board;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class BoardDaoImpl implements BoardDao{
 	}
 	
 	@Override
-	public List<BoardContent> getBoardTableRows(){
-		return sqlSession.selectList(EnumBoardMapper.NAME_SPACE + "." + EnumBoardMapper.GET_BOARD_TABLE_ROWS);
+	public List<BoardContent> getBoardTableRows(Map<String, Integer> rangeMap){
+		return sqlSession.selectList(EnumBoardMapper.NAME_SPACE + "." + EnumBoardMapper.GET_BOARD_TABLE_ROWS, rangeMap);
 	}
 	
 	@Override
