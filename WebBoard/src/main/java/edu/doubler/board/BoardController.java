@@ -1,9 +1,11 @@
 package edu.doubler.board;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.doubler.domain.BoardContent;
 
@@ -22,6 +25,7 @@ import edu.doubler.domain.BoardContent;
 public class BoardController {
 	
 	private static Logger logger = LoggerFactory.getLogger(BoardController.class);
+	public static final Integer NONE = -1;
 	
 	@Autowired
 	BoardService boardService;
@@ -33,20 +37,39 @@ public class BoardController {
 	
 	@RequestMapping(value = "/list/{pagePosition}")
 	public String showBoardList(
-	Model model, HttpServletRequest request,
+	Model model, 
+	HttpServletRequest request,
+	HttpServletResponse response,
 	@PathVariable String pagePosition){
 		
-		StringBuffer URL = request.getRequestURL();
+		String move = request.getParameter("pageBlock");
 		
-		Map<String, Integer> rangeMap = null;
-		rangeMap = boardService.pagingProcessing(pagePosition);
+		// 페이지 클릭
+		if(move == null){
+			int currentPage = Integer.parseInt(pagePosition);
+			Map<String, Integer> pageInfo = boardService.pagingProcessing(NONE, currentPage);
+			
+			Map<String, Integer> rangeInfo = new HashMap<String, Integer>();
+			rangeInfo.put("startNumber", pageInfo.get("startNumber"));
+			rangeInfo.put("endNumber", pageInfo.get("endNumber"));
+			List<BoardContent> boardTableRows = boardService.getBoardTableRows(rangeInfo);
+			
+			model.addAttribute("boardTableRows", boardTableRows);
+			model.addAttribute("pageInfo", pageInfo);
+			
+			return "boardViews/list";
+		}
 		
-		// 게시판 데이터 반환
-		List<BoardContent> boardTableRows = boardService.getBoardTableRows(rangeMap);
-		model.addAttribute("boardTableRows", boardTableRows);
-		model.addAttribute("pagePosition", pagePosition);
-		
-		return "boardViews/list";
+		// [이전] & [다음] 클릭
+		else{
+			int movePage = 0;
+			if("prev".equals(pagePosition))
+				movePage = boardService.movePrevProcessing(Integer.parseInt(move));
+			else 
+				movePage = boardService.moveNextProcessing(Integer.parseInt(move));
+			
+			return "redirect:/board/list/" + movePage;
+		}
 	}
 	
 	@RequestMapping(value = "/content/{pkn}")

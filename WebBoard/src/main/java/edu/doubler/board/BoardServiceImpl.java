@@ -73,23 +73,23 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Map<String, Integer> pagingProcessing(String pagePosition) {
-		logger.info("pagePosition : " + pagePosition);
+	public Map<String, Integer> pagingProcessing(int currentPageBlock, int pagePosition) {
+		logger.info(":: pagingProcessing ::");
 		
+		int count = getFullCountOnContent();
 		PagingService pagingService = new PagingService();
-		
-		if("prev".equals("pagePosition")){
-			return null;
-		}
-		else if("next".equals("pagePostion")){
-			return null;
-		}
-		// 숫자
-		else{
-			int pageNumber = Integer.parseInt(pagePosition);
-			pagingService.setCurrentPageNPosition(pageNumber);
-			
-			return pagingService.getPageNumber();
-		}
+		return pagingService.pagingProcess(currentPageBlock, pagePosition, count);
+	}
+	
+	@Override
+	public int movePrevProcessing(int currentPageBlock){
+		logger.info(":: movePrevProcessing ::");
+		return (currentPageBlock - 1);
+	}
+	
+	@Override
+	public int moveNextProcessing(int currentPageBlock){
+		logger.info(":: moveNextProcessing ::");
+		return (currentPageBlock + 1);
 	}
 }

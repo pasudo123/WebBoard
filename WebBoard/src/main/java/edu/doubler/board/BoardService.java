@@ -19,5 +19,9 @@ public interface BoardService {
 	
 	public void updateBoardContent(BoardContent boardContent);
 	
-	public Map<String, Integer> pagingProcessing(String pagePosition);
+	public Map<String, Integer> pagingProcessing(int currentPageBlock, int pagePosition);
+	
+	public int movePrevProcessing(int currentPageBlock);
+	
+	public int moveNextProcessing(int currentPageBlock);
 }

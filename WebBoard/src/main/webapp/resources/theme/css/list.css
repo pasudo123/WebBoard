@@ -69,9 +69,9 @@ tr.tableColumnData td:nth-of-type(1){
 	display:none;
 }
 
-tr.tableColumnData td:nth-of-type(2){
-	display:none;
-}
+/* tr.tableColumnData td:nth-of-type(2){ */
+/* 	display:none; */
+/* } */
 
 tr.tableColumnData:last-of-type{
     border-bottom:1px solid black;

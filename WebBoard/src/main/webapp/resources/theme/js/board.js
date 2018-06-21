@@ -3,6 +3,7 @@
 window.onload = function(){
 	initClickEvent();
 	initPagePosition();
+	initNextAndPrev();
 };
 
 function initClickEvent(){
@@ -27,7 +28,7 @@ function initClickEvent(){
 		doShowListBtn.addEventListener('click', doHistoryBack);
 }
 
-// 색깔 입히기
+// 현재 페이지 색깔 입히기
 function initPagePosition(){
 	var requestURL = window.location.href;
 	var slashesArray = requestURL.split("/");
@@ -36,6 +37,12 @@ function initPagePosition(){
 	console.log(pagePosition);
 	var aTag = document.querySelector("#pagePos" + pagePosition);
 	aTag.style["background-color"]="#bacced";
+}
+
+// 페이지 여부에 따라서 [이전] & [다음] 출력여부 설정
+function initNextAndPrev(){
+	// 보류
+	// JSTL 로 설정할지 여부 결정
 }
 
 function doHistoryBack(){
@@ -58,9 +65,7 @@ function doDelete(){
 function showContent(){
 	var tdList = this.querySelectorAll('td');
 	var pkn = tdList[0].innerText;
-	var page_position = tdList[1].innerText;
 	
 	console.log("pkn : " + pkn);
-	
 	location.href = "../content/" + pkn;
 }

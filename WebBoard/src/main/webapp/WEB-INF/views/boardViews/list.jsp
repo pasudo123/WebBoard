@@ -37,7 +37,6 @@
 					<tr class="tableColumnData">
 						<!-- hidden -->
 						<td>${boardTableRow.pkn}</td>
-						<td>${pagePosition}</td>
 						
 						<!-- show -->						
 						<td>${boardTableRow.num}</td>
@@ -51,14 +50,24 @@
 			</table>
 		</div>
 
+		<!-- 페이징 처리 -->
 		<div class="paginationWrapper">
-			<a href="<c:url value = "./prev"/>" class="direction prev">이전</a>
-			<a id="pagePos${1}" href="<c:url value = "./${1}" />">1</a>
-			<a id="pagePos${2}" href="<c:url value = "./${2}" />">2</a>
-			<a id="pagePos${3}" href="<c:url value = "./${3}" />">3</a>
-			<a id="pagePos${4}" href="<c:url value = "./${4}" />">4</a>
-			<a id="pagePos${5}" href="<c:url value = "./${5}" />">5</a>
-			<a href="<c:url value = "./next"/>" class="direction next">다음</a>
+		
+			<!-- 현재 페이지 블록에 따라서 [이전] 혹은 [다음] 보여줄지 여부 결정 -->
+			<c:if test="${pageInfo.currentPageBlock != pageInfo.beginPageBlock}">
+				<a href="<c:url value = "./prev?pageBlock=${pageInfo.currentPageBlock}"/>" class="direction prev">이전</a>
+			</c:if>
+			
+			<!-- 페이지 번호 -->
+			<c:forEach var="page" begin="${pageInfo.startPage}" end="${pageInfo.lastPage}" step="1">
+				<c:if test="${page <= pageInfo.endPage}">
+					<a id="pagePos${page}" href="<c:url value = "./${page}" />">${page}</a>
+				</c:if>
+			</c:forEach>
+			
+			<c:if test="${pageInfo.currentPageBlock != pageInfo.endPageBlock}">
+				<a href="<c:url value = "./next?pageBlock=${pageInfo.currentPageBlock}"/>" class="direction next">다음</a>
+			</c:if>
 		</div>
 	</BODY>
 </HTML>
