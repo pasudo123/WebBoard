@@ -42,10 +42,10 @@ public class BoardController {
 	HttpServletResponse response,
 	@PathVariable String pagePosition){
 		
-		String move = request.getParameter("pageBlock");
+		String pageBlock = request.getParameter("pageBlock");
 		
 		// 페이지 클릭
-		if(move == null){
+		if(pageBlock == null){
 			int currentPage = Integer.parseInt(pagePosition);
 			Map<String, Integer> pageInfo = boardService.pagingProcessing(NONE, currentPage);
 			
@@ -62,11 +62,14 @@ public class BoardController {
 		
 		// [이전] & [다음] 클릭
 		else{
+			int block = Integer.parseInt(pageBlock);
 			int movePage = 0;
+			
+			// move 는 현재 페이지블록
 			if("prev".equals(pagePosition))
-				movePage = boardService.movePrevProcessing(Integer.parseInt(move));
+				movePage = boardService.movePrevProcessing(block);
 			else 
-				movePage = boardService.moveNextProcessing(Integer.parseInt(move));
+				movePage = boardService.moveNextProcessing(block);
 			
 			return "redirect:/board/list/" + movePage;
 		}

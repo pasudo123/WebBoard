@@ -47,8 +47,9 @@ public class PagingService {
 		return pageInfo;
 	}
 	
+	// 현재 페이지블록을 통해 이전 페이지블록의 첫번째 페이지 획득
 	public int getPrevPage(int currentPageBlock){
-		int prevPage = currentPageBlock-1;
+		int prevPage = getStartPageOnBlock(currentPageBlock-1);
 		
 		return prevPage;
 	}

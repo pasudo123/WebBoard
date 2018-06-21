@@ -84,12 +84,14 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int movePrevProcessing(int currentPageBlock){
 		logger.info(":: movePrevProcessing ::");
-		return (currentPageBlock - 1);
+		PagingService pagingService = new PagingService();
+		return pagingService.getPrevPage(currentPageBlock);
 	}
 	
 	@Override
 	public int moveNextProcessing(int currentPageBlock){
 		logger.info(":: moveNextProcessing ::");
-		return (currentPageBlock + 1);
+		PagingService pagingService = new PagingService();
+		return pagingService.getNextPage(currentPageBlock);
 	}
 }
