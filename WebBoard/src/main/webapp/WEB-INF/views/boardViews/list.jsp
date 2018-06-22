@@ -7,7 +7,7 @@
 <!DOCTYPE HTML>
 <HTML>
 	<HEAD>
-	<META charset="UTF-8">
+		<META charset="UTF-8">
 		<link rel="stylesheet" type="text/css"href="/resources/theme/css/font.css">
 		<link rel="stylesheet" type="text/css"href="/resources/theme/css/pagination.css">
 		<link rel="stylesheet" type="text/css"href="/resources/theme/css/list.css">
@@ -21,38 +21,13 @@
 		<div class="buttonWrapper">
 			<a class="writeBtn" id="doWriteBtn" href="<c:url value = "../write"/>">작성하기</a>
 		</div>
-	
-		<div class="tableWrapper">
-			<table>
-				<tr class="tableColumnHeader">
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>조회수</th>
-					<th>추천수</th>
-				</tr>
-				
-				<c:forEach items="${boardTableRows}" var="boardTableRow">
-					<tr class="tableColumnData">
-						<!-- hidden -->
-						<td>${boardTableRow.pkn}</td>
-						
-						<!-- show -->						
-						<td>${boardTableRow.num}</td>
-						<td>${boardTableRow.title}</td>
-						<td>${boardTableRow.writer}</td>
-						<td>${boardTableRow.writeDate}</td>
-						<td>${boardTableRow.read}</td>
-						<td>${boardTableRow.hit}</td>
-					</tr>
-				</c:forEach>
-			</table>
-		</div>
-
+		
+		<c:import url="table-row.jsp">
+			<c:param name="boardTableRows" value="${boardTableRows}"></c:param>
+		</c:import>
+		
 		<!-- 페이징 처리 -->
 		<div class="paginationWrapper">
-		
 			<!-- 현재 페이지 블록에 따라서 [이전] 혹은 [다음] 보여줄지 여부 결정 -->
 			<c:if test="${pageInfo.currentPageBlock != pageInfo.beginPageBlock}">
 				<a href="<c:url value = "./prev?pageBlock=${pageInfo.currentPageBlock}"/>" class="direction prev">이전</a>

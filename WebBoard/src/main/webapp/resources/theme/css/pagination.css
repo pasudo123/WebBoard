@@ -14,13 +14,9 @@ div.paginationWrapper a {
 	text-decoration: none;
 	display: inline-block;
 	border-left: 1px solid #d6d6d6;
+	border-right: 1px solid #d6d6d6;
 	margin: 0 -2.5px;
 }
-
-div.paginationWrapper a:nth-of-type(6){
-	border-right: 1px solid #d6d6d6;
-}
-
 
 .paginationWrapper a:hover, .paginationWrapper a:active, .paginationWrapper a:focus {
 	background-color: #dae4f9;

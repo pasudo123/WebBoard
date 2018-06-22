@@ -138,6 +138,12 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	@RequestMapping(value = "/test-ajax")
+	public String testAjax(HttpServletRequest request){
+		
+		return null;
+	}
+	
 	/**ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	 * 
 	 * 페이징처리 위한 데이터 삽입 [ 테스트 로직  ]

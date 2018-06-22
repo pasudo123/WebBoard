@@ -3,7 +3,6 @@
 window.onload = function(){
 	initClickEvent();
 	initPagePosition();
-	initNextAndPrev();
 };
 
 function initClickEvent(){
@@ -37,12 +36,6 @@ function initPagePosition(){
 	console.log(pagePosition);
 	var aTag = document.querySelector("#pagePos" + pagePosition);
 	aTag.style["background-color"]="#bacced";
-}
-
-// 페이지 여부에 따라서 [이전] & [다음] 출력여부 설정
-function initNextAndPrev(){
-	// 보류
-	// JSTL 로 설정할지 여부 결정
 }
 
 function doHistoryBack(){
