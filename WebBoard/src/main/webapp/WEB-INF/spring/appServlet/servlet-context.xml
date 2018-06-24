@@ -38,6 +38,7 @@
 	<context:component-scan base-package="edu.doubler" />
 	
 	<util:properties id="props" location="classpath:/props/config.properties" />
+	<util:properties id="user" location="classpath:/props/user.properties" />
 	
 	<!-- 	local Database -->
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
