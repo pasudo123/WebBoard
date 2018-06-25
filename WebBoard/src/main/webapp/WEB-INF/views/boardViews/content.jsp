@@ -36,6 +36,7 @@
 				<input class="modifyButton" id="modifyBtn" type="submit" value="수정">
 				<input class="deleteButton" id="deleteBtn" type="button" value="삭제">
 				<input class="showListButton" id="showListBtn" type="button" value="목록보기">
+				<input type="hidden" id="refererURL" value="${refererURL}">
 			</div>
 		</form:form>
 	</BODY>

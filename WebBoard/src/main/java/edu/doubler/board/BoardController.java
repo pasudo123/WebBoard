@@ -42,6 +42,10 @@ public class BoardController {
 	HttpServletResponse response,
 	@PathVariable String pagePosition){
 		
+		/**
+		 * IP 가져오는 ~
+		 * **/
+		
 		String pageBlock = request.getParameter("pageBlock");
 		
 		// 페이지 클릭
@@ -78,14 +82,19 @@ public class BoardController {
 	@RequestMapping(value = "/content/{pkn}")
 	public String showBoardContent(
 	@PathVariable int pkn,
+	HttpServletRequest request,
 	Model model){
 
+		// 이전 URL 확인
+		String refererURL = request.getHeader("referer");
+		logger.info(":: refererURL :: " + refererURL);
 		logger.info("게시글 조회 시도");
 		BoardContent boardContent = boardService.getBoardContent(pkn);
 		logger.info("게시글 조회 성공");
 		
 		model.addAttribute("pkn", pkn);
 		model.addAttribute("boardContent", boardContent);
+		model.addAttribute("refererURL", refererURL);
 		
 		return "boardViews/content";
 	}

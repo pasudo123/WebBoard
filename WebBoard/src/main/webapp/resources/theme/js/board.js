@@ -35,11 +35,20 @@ function initPagePosition(){
 	
 	console.log(pagePosition);
 	var aTag = document.querySelector("#pagePos" + pagePosition);
-	aTag.style["background-color"]="#bacced";
+	if(aTag)
+		aTag.style["background-color"]="#bacced";
 }
 
 function doHistoryBack(){
 	history.back();
+}	
+
+function doRefererBack(){
+	var refererURL = document.querySelector('#refererURL');
+	
+	console.log(refererURL);
+	return;
+	location.href = refererURL;
 }
 
 function doDelete(){
