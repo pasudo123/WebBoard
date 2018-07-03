@@ -25,8 +25,10 @@ public class PagingService {
 		else
 			currentPageBlock = pageBlock;
 		
-		int startTableRowNum = page*VIEW_CONTENT_COUNT - (VIEW_CONTENT_COUNT - 1);
-		int lastTableRowNum = page*VIEW_CONTENT_COUNT;
+		int lastTableRowNum = contentCount - (VIEW_CONTENT_COUNT * (page - 1));
+		int startTableRowNum = lastTableRowNum - (VIEW_CONTENT_COUNT - 1);
+		if(startTableRowNum < 0)
+			startTableRowNum = 0;
 		
 		pageInfo.put("startNumber", startTableRowNum);
 		pageInfo.put("endNumber", lastTableRowNum);
