@@ -24,7 +24,7 @@ function initClickEvent(){
 	
 	var doShowListBtn = document.querySelector('#showListBtn');
 	if(doShowListBtn)
-		doShowListBtn.addEventListener('click', doHistoryBack);
+		doShowListBtn.addEventListener('click', doRefererBack);
 }
 
 // 현재 페이지 색깔 입히기
@@ -45,10 +45,7 @@ function doHistoryBack(){
 
 function doRefererBack(){
 	var refererURL = document.querySelector('#refererURL');
-	
-	console.log(refererURL);
-	return;
-	location.href = refererURL;
+	location.href = refererURL.value;
 }
 
 function doDelete(){
