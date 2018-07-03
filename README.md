@@ -28,7 +28,7 @@
 * HTML 태그 내에 SCIPRT 삽입 위치 여부 (실행순서와 렌더링 관련)
 * 상대경로 & 절대경로
 * Java SimpleDateFormat() 
-* Oracle Sequence
+* [ Oracle Sequence ](http://pasudo123.tistory.com/140)
 * VARCHAR SIZE 관련
 * JSTL 문법
 * @RequestParam & HttpServletRequest & WebRequest
