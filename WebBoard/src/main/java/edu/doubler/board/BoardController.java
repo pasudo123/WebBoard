@@ -86,6 +86,7 @@ public class BoardController {
 
 		// 이전 URL 확인
 		String refererURL = request.getHeader("referer");
+		
 		logger.info(":: refererURL :: " + refererURL);
 		logger.info("게시글 조회 시도");
 		BoardContent boardContent = boardService.getBoardContent(pkn);
