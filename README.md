@@ -35,7 +35,7 @@
 * Interceptor & Filter
 * /** & /*
 * Spring Security
-* Properties file 
+* [ Properties file ] (http://pasudo123.tistory.com/215)
 
 ## 데이터베이스
 __게시판 테이블__
