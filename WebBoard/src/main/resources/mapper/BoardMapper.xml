@@ -22,31 +22,37 @@
 	resultType="edu.doubler.domain.BoardContent">
 	<![CDATA[
 		SELECT 
-			w.rn as num,
-			w.CONTENTS_NUMS as pkn,
-			W.CONTENTS_TITLE as title, 
-			W.CONTENTS_WRITER as writer, 
-			W.CONTENTS_CONTENT as content,
-			W.CONTENTS_DATE as writeDate,
-			W.CONTENTS_READ_COUNT as read, 
-			W.CONTENTS_HIT_COUNT as hit
+			Full_TB2.rn as num,  
+			Full_TB2.nums as pkn,
+			Full_TB2.title as title, 
+			Full_TB2.writer as writer, 
+			Full_TB2.web_content as content, 
+			Full_TB2.web_date as writeDate, 
+			Full_TB2.web_count as read, 
+			Full_TB2.hit_count as hit
 		FROM 
-			(
-				SELECT 
-					ROWNUM as rn, 
-					CONTENTS_NUMS, 
-					CONTENTS_TITLE, 
-					CONTENTS_WRITER, 
-					CONTENTS_CONTENT, 
-					CONTENTS_DATE, 
-					CONTENTS_READ_COUNT, 
-					CONTENTS_HIT_COUNT 
-				FROM 
-					WEB_BOARD_TB 
-				WHERE 
-					ROWNUM <= #{endNumber}
-				ORDER BY CONTENTS_NUMS DESC
-			) W
+		    (SELECT 
+		    	Full_TB.rn as rn, 
+		    	Full_TB.nums as nums, 
+		    	Full_TB.title as title, 
+		    	Full_TB.writer as writer, 
+		    	Full_TB.web_content as web_content, 
+		    	Full_TB.web_date as web_date, 
+		    	Full_TB.web_count as web_count, 
+		    	Full_TB.hit_count as hit_count FROM 
+			        (SELECT 
+			            ROWNUM as rn,
+			            CONTENTS_NUMS as nums, 
+			            CONTENTS_TITLE as title,
+			            CONTENTS_WRITER as writer, 
+			            CONTENTS_CONTENT as web_content, 
+			            CONTENTS_DATE as web_date,
+			            CONTENTS_READ_COUNT as web_count,
+			            CONTENTS_HIT_COUNT as hit_count
+			        FROM 
+			            WEB_BOARD_TB 
+			        ORDER BY CONTENTS_NUMS ASC) Full_TB
+	    	WHERE rn <= #{endNumber}) Full_TB2
 		WHERE rn >= #{startNumber}
 	]]>
 	</select>

@@ -55,8 +55,8 @@ public class BoardController {
 			Map<String, Integer> rangeInfo = new HashMap<String, Integer>();
 			rangeInfo.put("startNumber", pageInfo.get("startNumber"));
 			rangeInfo.put("endNumber", pageInfo.get("endNumber"));
-			List<BoardContent> boardTableRows = boardService.getBoardTableRows(rangeInfo);
 			
+			List<BoardContent> boardTableRows = boardService.getBoardTableRows(rangeInfo);
 			model.addAttribute("boardTableRows", boardTableRows);
 			model.addAttribute("pageInfo", pageInfo);
 			

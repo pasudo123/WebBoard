@@ -1,6 +1,7 @@
 package edu.doubler.board;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -30,8 +31,16 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardContent> getBoardTableRows(Map<String, Integer> rangeMap) {
 		List<BoardContent> boardTableRows = boardDao.getBoardTableRows(rangeMap);
-
-		return boardTableRows;
+		List<BoardContent> reverseTableRows = new ArrayList<BoardContent>();
+		
+		/** rownum 기준이기 때문에 역순으로 (reverse) 데이터 조정 : 서비스에서 설정 **/
+		
+		int size = boardTableRows.size();
+		for(int i = size - 1; i >= 0; i--){
+			reverseTableRows.add(boardTableRows.get(i));
+		}
+		
+		return reverseTableRows;
 	}
 
 	@Override

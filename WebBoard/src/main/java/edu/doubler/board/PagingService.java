@@ -3,7 +3,12 @@ package edu.doubler.board;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class PagingService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	private static final int VIEW_CONTENT_COUNT = 10;	// 한 페이지에 보여줄 글의 수
 	private static final int VIEW_PAGE_COUNT = 5;		// 한 화면당 페이지의 수
 	private static final int NONE = -1;
@@ -29,6 +34,13 @@ public class PagingService {
 		int startTableRowNum = lastTableRowNum - (VIEW_CONTENT_COUNT - 1);
 		if(startTableRowNum < 0)
 			startTableRowNum = 0;
+		
+		logger.info("pageBlock : " + pageBlock);
+		logger.info("page : " + page);
+		logger.info("contentCount : " + contentCount);
+		logger.info("startTableRowNum : " + startTableRowNum);
+		logger.info("lastTableRowNum : " + lastTableRowNum);
+		logger.info("------------------------------");
 		
 		pageInfo.put("startNumber", startTableRowNum);
 		pageInfo.put("endNumber", lastTableRowNum);
