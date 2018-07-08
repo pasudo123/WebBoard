@@ -36,6 +36,10 @@
 * /** & /*
 * Spring Security
 * [ Properties file ](http://pasudo123.tistory.com/215)
+* Paging 처리 
+    * [ 페이징(paging)에 대한 이해 - 1 ](https://okky.kr/article/282819)
+    * [ 페이징(paging)에 대한 이해 - 2 ](https://okky.kr/article/282926)
+    * [ 페이징(paging)에 대한 이해 - 3 ](https://okky.kr/article/283315)
 
 ## 데이터베이스
 __게시판 테이블__
