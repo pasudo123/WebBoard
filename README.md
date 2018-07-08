@@ -28,11 +28,35 @@
 * HTML 태그 내에 SCIPRT 삽입 위치 여부 (실행순서와 렌더링 관련)
 * 상대경로 & 절대경로
 * Java SimpleDateFormat() 
-* Oracle Sequence
+* [ Oracle Sequence ](http://pasudo123.tistory.com/140)
 * VARCHAR SIZE 관련
 * JSTL 문법
 * @RequestParam & HttpServletRequest & WebRequest
 * Interceptor & Filter
 * /** & /*
 * Spring Security
-* Properties file 
+* [ Properties file ](http://pasudo123.tistory.com/215)
+* Paging 처리 
+    * [ 페이징(paging)에 대한 이해 - 1 ](https://okky.kr/article/282819)
+    * [ 페이징(paging)에 대한 이해 - 2 ](https://okky.kr/article/282926)
+    * [ 페이징(paging)에 대한 이해 - 3 ](https://okky.kr/article/283315)
+
+## 데이터베이스
+__게시판 테이블__
+~~~SQL
+CREATE TABLE WEB_BOARD_TB
+(
+    CONTENTS_NUMS NUMBER(7) PRIMARY KEY,
+    CONTENTS_TITLE VARCHAR2(50),
+    CONTENTS_WRITER VARCHAR2(50),
+    CONTENTS_CONTENT VARCHAR2(1000),
+    CONTENTS_DATE VARCHAR(20),
+    CONTENTS_READ_COUNT NUMBER(4),
+    CONTENTS_HIT_COUNT NUMBER(4)
+);
+
+-- 시퀀스 생성
+CREATE SEQUENCE 
+    CONTENTS_SEQ
+START WITH 1 INCREMENT BY 1 MAXVALUE 9999999;
+~~~
